@@ -3,9 +3,36 @@
 }
 
 .photograph-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #fafafa;
   height: 300px;
   margin: 0 100px;
+  padding: 5rem;
+}
+
+.photograph-header h2 {
+  color: #d3573c;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 83px;
+}
+.photograph-header h3 {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+}
+.photograph-header h4 {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 23px;
+}
+
+.photograph-header img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
 }
 
 .contact_button {

@@ -25,6 +25,7 @@ async function init() {
   console.log(photographer);
   factory = photographerTemplate(photographer);
   await renderHeader();
+  await displayMedia();
 }
 
 async function renderHeader() {
@@ -34,6 +35,16 @@ async function renderHeader() {
   const mainCont = document.querySelector(".photograph-header");
 
   mainCont.innerHTML = factory.getUserHeader();
+}
+
+async function displayMedia(medias) {
+  const mediaContainer = document.querySelector(".photograph-imgs-container");
+
+  medias.forEach((photographer) => {
+    const mediasPhotograph = mediaTemplate(photographer);
+    const userCardDOM = mediasPhotograph.getMedia();
+    mediaContainer.appendChild(userCardDOM);
+  });
 }
 
 init();
