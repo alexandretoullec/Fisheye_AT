@@ -1,6 +1,6 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
-// récupérer l'ID du photographe dans l'URL et on retourne les datas
+// récupérer l'ID du photographe dans l'URL et retourne les datas photographes
 async function getPhotographersById() {
   const reponse = await fetch("data/photographers.json");
   const datas = await reponse.json();
@@ -16,17 +16,28 @@ async function getPhotographersById() {
   return photographer;
 }
 
-console.log(getPhotographersById());
+// récupérer l'ID du photographe dans l'URL et retourne les datas medias
+async function getMediasByPhotographersId() {
+  const reponse = await fetch("data/photographers.json");
+  const datas = await reponse.json();
+  const medias = datas.media;
+
+  const params = new URL(document.location).searchParams;
+  const photographerId = parseInt(params.get("id"));
+
+  // const media = medias.find((media) => media.photographerId === photographerId);
+
+  const mediasArrayById = medias.filter(
+    (media) => media.photographerId === photographerId
+  );
+
+  return mediasArrayById;
+}
+
+// console.log(getPhotographersById());
 
 let factory = null;
-
-async function init() {
-  const photographer = await getPhotographersById();
-  console.log(photographer);
-  factory = photographerTemplate(photographer);
-  await renderHeader();
-  await displayMedia();
-}
+let factoryMedia = null;
 
 async function renderHeader() {
   //   const mainCont = document.querySelector("#main");
@@ -39,12 +50,26 @@ async function renderHeader() {
 
 async function displayMedia(medias) {
   const mediaContainer = document.querySelector(".photograph-imgs-container");
-
-  medias.forEach((photographer) => {
-    const mediasPhotograph = mediaTemplate(photographer);
+  // mediaContainer.innerHTML = factoryMedia.getMedia();
+  // mediaContainer.innerHTML = `<div>hello</div>`;
+  console.log(medias);
+  medias.forEach((media) => {
+    // const render = `<div>${media.id}</div>`;
+    const mediasPhotograph = mediaTemplate(media);
     const userCardDOM = mediasPhotograph.getMedia();
     mediaContainer.appendChild(userCardDOM);
   });
+}
+
+async function init() {
+  const photographer = await getPhotographersById();
+  const medias = await getMediasByPhotographersId();
+  console.log(photographer);
+  // console.log(medias);
+  factory = photographerTemplate(photographer);
+  factoryMedia = mediaTemplate(medias);
+  await renderHeader();
+  await displayMedia(medias);
 }
 
 init();
