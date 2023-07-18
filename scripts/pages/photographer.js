@@ -71,7 +71,7 @@ async function init() {
   factoryMedia = mediaTemplate(medias);
   await renderHeader();
   await displayMedia(medias);
-  Lightbox.init();
+  Lightbox.init(medias);
 }
 
 init();

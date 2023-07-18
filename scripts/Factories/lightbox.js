@@ -6,14 +6,14 @@
 
 class Lightbox {
   static init() {
-    // selectionne les href qui finisse par png, jpg et jpeg et mp4
+    // selectionne les href qui finisse par png, jpg ,jpeg et mp4
     const links = Array.from(
       document.querySelectorAll(
         'a[href$=".png"],a[href$=".jpg"], a[href$=".jpeg"],a[href$=".mp4"] '
       )
     );
 
-    console.log(links);
+    // console.log(links);
 
     const gallery = links.map((link) => link.getAttribute("href"));
     // debugger;
@@ -30,11 +30,15 @@ class Lightbox {
    *
    * @param {string} url URL de l'image
    * @param {string[]} images Chemins des images de la lightbox
+   * @param {string[]} medias datas de la photographie pour récupérer le titre
+   *
    */
 
-  constructor(url, images) {
+  constructor(url, images, medias) {
     this.element = this.builDom(url);
+
     this.images = images;
+    this.medias = medias;
     this.loadImage(url);
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.appendChild(this.element);
@@ -51,7 +55,7 @@ class Lightbox {
     // const image = new Image();
     const image = document.createElement("img");
 
-    const video = document.createElement("video");
+    // const video = document.createElement("video");
 
     video.setAttribute("src", url);
 
@@ -66,6 +70,8 @@ class Lightbox {
       container.appendChild(image);
       this.url = url;
     };
+
+    console.log(this.medias);
 
     // image.onload = () => {
     //   container.removeChild(loader);
@@ -150,11 +156,12 @@ class Lightbox {
     const dom = document.createElement("div");
     dom.classList.add("lightbox-bg");
     dom.innerHTML = `
-      <div >    
+      <div class="lightbox">    
           <button class="lightbox__close">Fermer</button>
           <button class="lightbox__next">Suivant</button>
           <button class="lightbox__prev">Précédent</button>
           <div class="lightbox__container"></div> 
+          <h3>Photo ${this.medias}</h3>
       </div>   
       `;
     dom

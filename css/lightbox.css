@@ -29,6 +29,11 @@
   animation: lightBoxIn 0.5s;
   transition: opacity 0.3s;
 }
+
+.lightbox {
+  padding: 2rem;
+}
+
 .lightbox__fadeOut {
   opacity: 0;
 }
@@ -41,7 +46,7 @@
   height: 100%;
   position: fixed;
   top: 0;
-  right: 0;
+  right: 100px;
   margin-top: -22px;
   z-index: 11;
 
@@ -54,7 +59,7 @@
 
 .lightbox__prev {
   right: auto;
-  left: 0;
+  left: 100px;
 }
 
 .lightbox__close {
@@ -65,8 +70,8 @@
   width: 38px;
   position: fixed;
   text-indent: -3000px;
-  right: 20px;
-  top: 20px;
+  right: 100px;
+  top: 50px;
   z-index: 12;
 
   /* width: 40px;
