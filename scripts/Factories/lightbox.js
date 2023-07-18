@@ -148,12 +148,14 @@ class Lightbox {
 
   builDom(url) {
     const dom = document.createElement("div");
-    dom.classList.add("lightbox");
-    dom.innerHTML = `    
+    dom.classList.add("lightbox-bg");
+    dom.innerHTML = `
+      <div >    
           <button class="lightbox__close">Fermer</button>
           <button class="lightbox__next">Suivant</button>
           <button class="lightbox__prev">Précédent</button>
-          <div class="lightbox__container"></div>    
+          <div class="lightbox__container"></div> 
+      </div>   
       `;
     dom
       .querySelector(".lightbox__close")
