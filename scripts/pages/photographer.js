@@ -52,7 +52,7 @@ async function displayMedia(medias) {
   const mediaContainer = document.querySelector(".photograph-imgs-container");
   // mediaContainer.innerHTML = factoryMedia.getMedia();
   // mediaContainer.innerHTML = `<div>hello</div>`;
-  console.log(medias);
+  // console.log(medias);
   medias.forEach((media) => {
     // const render = `<div>${media.id}</div>`;
     const mediasPhotograph = mediaTemplate(media);
@@ -64,12 +64,14 @@ async function displayMedia(medias) {
 async function init() {
   const photographer = await getPhotographersById();
   const medias = await getMediasByPhotographersId();
-  console.log(photographer);
+
+  // console.log(photographer);
   // console.log(medias);
   factory = photographerTemplate(photographer);
   factoryMedia = mediaTemplate(medias);
   await renderHeader();
   await displayMedia(medias);
+  Lightbox.init();
 }
 
 init();

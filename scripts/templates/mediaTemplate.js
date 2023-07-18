@@ -5,20 +5,27 @@ function mediaTemplate(data) {
   const videoLink = `assets/images/${video}`;
   function getMedia() {
     //creation de l'article
-    const article = document.createElement("article");
-    article.classList.add("media-img-card");
+    const article = document.createElement("a");
+
     //creation de l'img
     let img = "";
 
     if (image) {
+      article.setAttribute("href", picture);
+
+      article.classList.add("media-img-card");
       img = document.createElement("img");
       img.setAttribute("src", picture);
-    } else if (video) {
-      img = document.createElement("video");
+    }
 
-      // img.setAttribute("controls");
-      img.setAttribute("width", 250);
-      img.setAttribute("height", 250);
+    if (video) {
+      article.setAttribute("href", videoLink);
+      article.classList.add("media-img-card");
+      img = document.createElement("video");
+      img.setAttribute("src", videoLink);
+      img.setAttribute("controls", "controls");
+      img.setAttribute("width", 400);
+      img.setAttribute("height", 400);
       const source = document.createElement("source");
       source.setAttribute("src", videoLink);
       img.append(source);
