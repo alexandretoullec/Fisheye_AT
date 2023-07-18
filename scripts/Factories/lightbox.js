@@ -55,7 +55,7 @@ class Lightbox {
     // const image = new Image();
     const image = document.createElement("img");
 
-    // const video = document.createElement("video");
+    const video = document.createElement("video");
 
     video.setAttribute("src", url);
 
