@@ -1,38 +1,33 @@
-// import { photographerTemplate } from "../templates/photographer";
-
 async function getPhotographers() {
-  // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet,
-  // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
-  // Récupération des pièces depuis le fichier JSON
-
-  //
-  const reponse = await fetch("data/photographers.json");
-  const datas = await reponse.json();
-
-  const photographersDatas = datas.photographers;
-
-  console.log(datas.photographers);
-
-  // et bien retourner le tableau photographers seulement une fois récupéré
-  return {
-    photographers: [...photographersDatas],
-  };
+  return fetch("./data/photographers.json")
+    .then(function (res) {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+    .then(function (data) {
+      return data;
+    })
+    .catch(function (err) {
+      alert("Erreur : " + err);
+    });
 }
 
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
 
   photographers.forEach((photographer) => {
-    const photographerModel = photographerTemplate(photographer);
+    const photographerModel = new PhotographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
-    photographersSection.appendChild(userCardDOM);
+    photographersSection.appendChild(userCardDOM.article);
   });
 }
 
 async function init() {
   // Récupère les datas des photographes
-  const { photographers } = await getPhotographers();
-  displayData(photographers);
+  const datas = await getPhotographers();
+  console.log(datas.photographers);
+  displayData(datas.photographers);
 }
 
 init();
