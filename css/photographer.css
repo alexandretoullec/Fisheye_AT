@@ -225,6 +225,11 @@ form input {
   width: 10%;
 }
 
+.likeContainer .fa-solid,
+.fa-regular {
+  cursor: pointer;
+}
+
 .likeContainer .fa-solid {
   display: none;
 }
@@ -246,6 +251,32 @@ form input {
   border-radius: 10px 10px 0 0;
 }
 
-.likeprice-container__like {
-  content: " ";
+/* heart */
+
+.heart-checkbox input[type="checkbox"],
+.heart-checkbox .checked {
+  display: none;
+}
+
+.heart-checkbox {
+  cursor: pointer;
+}
+.heart-checkbox i {
+  /* margin: 2rem 0; */
+  font-size: 1rem;
+}
+.heart-checkbox .checked {
+  color: #901c1c;
+  display: none;
+}
+
+.heart-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.heart-checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.heart-checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
 }

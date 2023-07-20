@@ -60,10 +60,18 @@ async function displayMedia(medias) {
 
 // Counter Likes
 async function counterLike(medias) {
+  //dom
   const likesContainer = document.querySelector(".likeprice-container__like");
+  const jaime = document.querySelectorAll(".checked");
+  const jaimePas = document.querySelectorAll(".unchecked");
 
+  // count likes from datas
   const likes = medias.map((media) => media.likes);
-  const likeCounter = likes.reduce((a, b) => a + b);
+  let likeCounter = likes.reduce((a, b) => a + b);
+
+  // count likes if checked or -1 if unchecked
+  let count = 0;
+  jaimePas.forEach((i) => i.addEventListener("click"));
 
   const result = `
   <p>

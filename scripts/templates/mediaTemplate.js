@@ -41,14 +41,18 @@ function mediaTemplate(data) {
     const titre = document.createElement("h3");
     const jaime = document.createElement("p");
     jaime.classList.add("count");
-    const coeurContainer = document.createElement("div");
-    coeurContainer.classList.add("coeurContainer");
+    const coeurContainer = document.createElement("label");
+    coeurContainer.classList.add("heart-checkbox");
+    const input = document.createElement("input");
+    input.setAttribute("type", "checkbox");
     const coeurVide = document.createElement("i");
     coeurVide.classList.add("fa-regular");
     coeurVide.classList.add("fa-heart");
+    coeurVide.classList.add("unchecked");
     const coeurPlein = document.createElement("i");
     coeurPlein.classList.add("fa-solid");
     coeurPlein.classList.add("fa-heart");
+    coeurPlein.classList.add("checked");
     titre.innerText = title;
     jaime.innerText = likes;
 
@@ -61,8 +65,15 @@ function mediaTemplate(data) {
     textContainer.append(likeContainer);
     likeContainer.append(jaime);
     likeContainer.append(coeurContainer);
+    coeurContainer.append(input);
     coeurContainer.append(coeurVide);
     coeurContainer.append(coeurPlein);
+
+    //<label class="heart-checkbox">
+    //    <input type="checkbox" />
+    //    <i class="fa-regular fa-heart unchecked"></i>
+    //    <i class="fa-solid fa-heart checked"></i>
+    //</label>
 
     return article;
   }
