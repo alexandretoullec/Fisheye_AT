@@ -20,41 +20,68 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="/index.html"
+        ><img src="assets/images/logo.png" class="logo"
+      /></a>
     </header>
     <main id="main">
       <div class="photograph-header"></div>
-      <div class="photograph-sort"><p>Trier par</p></div>
-      <div class="photograph-imgs-container"></div>
-    </main>
-    <div id="contact_modal" class="contact_modal">
-      <div class="modal">
-        <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-        <form name="contactez-moi" method="post" class="contact-form">
-          <div class="contact-form__prenom">
-            <label for="prenom">Prénom</label>
-            <input type="text" name="prenom" id="prenom" />
-          </div>
-          <div class="contact-form__nom">
-            <label for="nom">Nom</label>
-            <input type="text" name="nom" id="nom" />
-          </div>
-          <div class="contact-form__email">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" />
-          </div>
-          <div class="contact-form__msg">
-            <label for="msg">Email</label>
-            <textarea name="msg" id="msg" rows="15" cols="145"></textarea>
-          </div>
-
-          <button type="submit" class="contact_button">Envoyer</button>
-        </form>
+      <div class="photograph-sort">
+        <p>Trier par</p>
+        <ul>
+          <li class="deroulant">
+            <a href="#">Popularité</a>
+            <ul class="sous">
+              <!-- <li><a href="#">Popularité</a></li> -->
+              <li><a href="#">Date</a></li>
+              <li><a href="#">Titre</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
-    </div>
+
+      <div class="photograph-imgs-container"></div>
+
+      <div id="contact_modal" class="contact_modal">
+        <div class="modal">
+          <header>
+            <h2>Contactez-moi</h2>
+            <img src="assets/icons/close.svg" onclick="closeModal()" />
+          </header>
+          <form name="contactez-moi" method="post" class="contact-form">
+            <div class="contact-form__prenom">
+              <label for="prenom">Prénom</label>
+              <input type="text" name="prenom" id="prenom" />
+            </div>
+            <div class="contact-form__nom">
+              <label for="nom">Nom</label>
+              <input type="text" name="nom" id="nom" />
+            </div>
+            <div class="contact-form__email">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" />
+            </div>
+            <div class="contact-form__msg">
+              <label for="msg">Votre Message</label>
+              <textarea name="msg" id="msg" rows="11" cols="120"></textarea>
+            </div>
+
+            <button type="submit" class="contact_button">Envoyer</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="likeprice-container">
+        <div class="likeprice-container__like">
+          <p>
+            297 081 <span><i class="fa-solid fa-heart"></i></span>
+          </p>
+        </div>
+        <div class="likeprice-container__price">
+          <!-- <p>300€ / jour</p> -->
+        </div>
+      </div>
+    </main>
 
     <script src="/scripts/pages/photographer.js"></script>
     <script src="scripts/templates/mediaTemplate.js"></script>

@@ -65,5 +65,17 @@ function photographerTemplate(data) {
     return headerPhotographer;
   }
 
-  return { name, picture, getUserCardDOM, getUserHeader };
+  function getPrice() {
+    return `    
+      <p>${price}€/ jour</p>
+    `;
+  }
+
+  return {
+    name,
+    picture,
+    getUserCardDOM,
+    getUserHeader,
+    getPrice,
+  };
 }

@@ -3,24 +3,26 @@ function mediaTemplate(data) {
 
   const picture = `assets/images/${image}`;
   const videoLink = `assets/images/${video}`;
+
   function getMedia() {
     //creation de l'article
-    const article = document.createElement("a");
+    const article = document.createElement("div");
+    const anchor = document.createElement("a");
 
     //creation de l'img
     let img = "";
 
     if (image) {
-      article.setAttribute("href", picture);
+      anchor.setAttribute("href", picture);
 
-      article.classList.add("media-img-card");
+      anchor.classList.add("media-img-card");
       img = document.createElement("img");
       img.setAttribute("src", picture);
     }
 
     if (video) {
-      article.setAttribute("href", videoLink);
-      article.classList.add("media-img-card");
+      anchor.setAttribute("href", videoLink);
+      anchor.classList.add("media-img-card");
       img = document.createElement("video");
       img.setAttribute("src", videoLink);
       img.setAttribute("controls", "controls");
@@ -38,23 +40,34 @@ function mediaTemplate(data) {
     likeContainer.classList.add("likeContainer");
     const titre = document.createElement("h3");
     const jaime = document.createElement("p");
-    const coeur = document.createElement("i");
-    coeur.classList.add("fa-regular");
-    coeur.classList.add("fa-heart");
+    jaime.classList.add("count");
+    const coeurContainer = document.createElement("div");
+    coeurContainer.classList.add("coeurContainer");
+    const coeurVide = document.createElement("i");
+    coeurVide.classList.add("fa-regular");
+    coeurVide.classList.add("fa-heart");
+    const coeurPlein = document.createElement("i");
+    coeurPlein.classList.add("fa-solid");
+    coeurPlein.classList.add("fa-heart");
     titre.innerText = title;
     jaime.innerText = likes;
 
     //affichage et hierarchisation dans le DOM
-    article.append(img);
+    article.append(anchor);
+    anchor.append(img);
     article.append(textContainer);
 
     textContainer.append(titre);
     textContainer.append(likeContainer);
     likeContainer.append(jaime);
-    likeContainer.append(coeur);
+    likeContainer.append(coeurContainer);
+    coeurContainer.append(coeurVide);
+    coeurContainer.append(coeurPlein);
 
     return article;
   }
 
-  return { getMedia };
+  function getLikeCounter() {}
+
+  return { getMedia, getLikeCounter };
 }

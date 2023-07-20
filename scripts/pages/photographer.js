@@ -40,9 +40,6 @@ let factory = null;
 let factoryMedia = null;
 
 async function renderHeader() {
-  //   const mainCont = document.querySelector("#main");
-  //   const photograpHeader = document.createElement("section");
-  //   mainCont.prepend(photograpHeader);
   const mainCont = document.querySelector(".photograph-header");
 
   mainCont.innerHTML = factory.getUserHeader();
@@ -61,6 +58,27 @@ async function displayMedia(medias) {
   });
 }
 
+// Counter Likes
+async function counterLike(medias) {
+  const likesContainer = document.querySelector(".likeprice-container__like");
+
+  const likes = medias.map((media) => media.likes);
+  const likeCounter = likes.reduce((a, b) => a + b);
+
+  const result = `
+  <p>
+    ${likeCounter} <span><i class="fa-solid fa-heart"></i></span>
+  </p>
+  `;
+
+  return (likesContainer.innerHTML = result);
+}
+
+async function renderPrice() {
+  const priceContainer = document.querySelector(".likeprice-container__price");
+  priceContainer.innerHTML = factory.getPrice();
+}
+
 async function init() {
   const photographer = await getPhotographersById();
   const medias = await getMediasByPhotographersId();
@@ -72,6 +90,8 @@ async function init() {
   await renderHeader();
   await displayMedia(medias);
   Lightbox.init(medias);
+  await renderPrice();
+  await counterLike(medias);
 }
 
 init();
