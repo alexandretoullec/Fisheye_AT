@@ -1,188 +1,97 @@
-// class Api {
-//   /**
-//    *
-//    * @param {string} url
-//    */
-//   constructor(url) {
-//     this._url = url;
-//   }
-
-//   async getPhotographers() {
-//     return fetch(this._url)
-//       .then((res) => res.json())
-//       .then((res) => res.photographers)
-//       .catch((err) => console.log("an error occurs", err));
-//   }
-
-//   async getMedias() {
-//     return fetch(thid._url)
-//       .then((res) => res.json())
-//       .then((res) => res.media)
-//       .catch((err) => console.log("an error occurs", err));
-//   }
-// }
-
-// class PhotographerApi extends Api {
-//   /**
-//    *
-//    * @param {string} url
-//    */
-//   constructor(url) {
-//     super(url);
-//   }
-
-//   async getDatas() {
-//     return await this.getPhotographers();
-//   }
-// }
-
-// class mediasApi extends Api {
-//   /**
-//    *
-//    * @param {string} url
-//    */
-
-//   constructir(url){
-//     super(url);
-//   }
-
-//   async getDatas(){
-//     return await this.getMedias();
-//   }
-// }
-
 class App {
   constructor() {
     this.photographerAPI = new PhotographerApi("data/photographers.json");
     this.mediasApi = new mediasApi("data/photographers.json");
-    // this.photographers = this.photographerAPI.photographers;
+    //show the url of the page
+    this.params = new URL(document.location).searchParams;
+    //searcj for id in the url of the page
+    this.id = parseInt(this.params.get("id"));
 
-    // this.params = new URL(document.location).searchParams;
-    // this.id = parseInt(this.params.get("id"));
+    //initiate factories
+    this.factory = null;
+    this.factoryMedia = null;
+  }
 
-    // this.photographer = this.photographers.find(
-    //   (photographer) => photographer.id === id
-    // );
+  async displayHeader(photographer) {
+    //initiate factory photographer template
+    this.factory = photographerTemplate(photographer);
+    //dom of the header
+    const mainCont = document.querySelector(".photograph-header");
+    // show the header photograph in the page
+    mainCont.innerHTML = this.factory.getUserHeader();
+  }
+
+  async displayMedia(medias) {
+    //initiate factoty media
+    this.factoryMedia = mediaTemplate(medias);
+
+    //DOM media container
+    const mediaContainer = document.querySelector(".photograph-imgs-container");
+
+    // for each media create card from factory mediaTemplate getMedia
+    medias.forEach((media) => {
+      const mediasPhotograph = mediaTemplate(media);
+      const userCardDOM = mediasPhotograph.getMedia();
+      mediaContainer.appendChild(userCardDOM);
+    });
+  }
+
+  async counterLike(medias) {
+    //dom
+    const likesContainer = document.querySelector(".likeprice-container__like");
+    const jaime = document.querySelectorAll(".checked");
+    const jaimePas = document.querySelectorAll(".unchecked");
+
+    // count likes from datas
+    const likes = medias.map((media) => media.likes);
+    let likeCounter = likes.reduce((a, b) => a + b);
+
+    // count likes if checked or -1 if unchecked
+    let count = 0;
+    // jaimePas.forEach((i) => i.addEventListener("click",console.log("clicked");));
+
+    const result = `
+    <p>
+      ${likeCounter} <span><i class="fa-solid fa-heart"></i></span>
+    </p>
+    `;
+
+    return (likesContainer.innerHTML = result);
+  }
+
+  async renderPrice(photographer) {
+    this.factory = photographerTemplate(photographer);
+    const priceContainer = document.querySelector(
+      ".likeprice-container__price"
+    );
+    priceContainer.innerHTML = this.factory.getPrice();
   }
 
   async main() {
+    // import datas from json files
     const photographersDatas = await this.photographerAPI.getDatas();
-    const mediasData = await this.mediasApi.getDatas();
-    console.log(photographersDatas);
-    console.log(mediasData);
-    const params = new URL(document.location).searchParams;
-    const id = parseInt(params.get("id"));
+    // const mediasData = await this.mediasApi.getDatas();
 
+    //looks the id in the url and send back photographer data with the matched url
     const photographer = photographersDatas.find(
-      (photographer) => photographer.id === id
+      (photographer) => photographer.id === this.id
     );
+
+    //import medias datas from json files
+    const mediasData = await this.mediasApi.getDatas();
+
+    //filter medias by photographers ID
+    const medias = mediasData.filter(
+      (media) => media.photographerId === this.id
+    );
+
+    app.displayHeader(photographer);
+    app.displayMedia(medias);
+    app.counterLike(medias);
+    app.renderPrice(photographer);
+    Lightbox.init(medias);
   }
 }
 
-//Mettre le code JavaScript lié à la page photographer.html
-
-// récupérer l'ID du photographe dans l'URL et retourne les datas photographes
-async function getPhotographersById() {
-  const reponse = await fetch("data/photographers.json");
-  const datas = await reponse.json();
-  const photographers = datas.photographers;
-
-  const params = new URL(document.location).searchParams;
-  const id = parseInt(params.get("id"));
-
-  const photographer = photographers.find(
-    (photographer) => photographer.id === id
-  );
-
-  return photographer;
-}
-
-// récupérer l'ID du photographe dans l'URL et retourne les datas medias
-async function getMediasByPhotographersId() {
-  const reponse = await fetch("data/photographers.json");
-  const datas = await reponse.json();
-  const medias = datas.media;
-
-  const params = new URL(document.location).searchParams;
-  const photographerId = parseInt(params.get("id"));
-
-  // const media = medias.find((media) => media.photographerId === photographerId);
-
-  const mediasArrayById = medias.filter(
-    (media) => media.photographerId === photographerId
-  );
-
-  return mediasArrayById;
-}
-
-// console.log(getPhotographersById());
-
-let factory = null;
-let factoryMedia = null;
-
-async function renderHeader() {
-  const mainCont = document.querySelector(".photograph-header");
-
-  mainCont.innerHTML = factory.getUserHeader();
-}
-
-async function displayMedia(medias) {
-  const mediaContainer = document.querySelector(".photograph-imgs-container");
-  // mediaContainer.innerHTML = factoryMedia.getMedia();
-  // mediaContainer.innerHTML = `<div>hello</div>`;
-  // console.log(medias);
-  medias.forEach((media) => {
-    // const render = `<div>${media.id}</div>`;
-    const mediasPhotograph = mediaTemplate(media);
-    const userCardDOM = mediasPhotograph.getMedia();
-    mediaContainer.appendChild(userCardDOM);
-  });
-}
-
-// Counter Likes
-async function counterLike(medias) {
-  //dom
-  const likesContainer = document.querySelector(".likeprice-container__like");
-  const jaime = document.querySelectorAll(".checked");
-  const jaimePas = document.querySelectorAll(".unchecked");
-
-  // count likes from datas
-  const likes = medias.map((media) => media.likes);
-  let likeCounter = likes.reduce((a, b) => a + b);
-
-  // count likes if checked or -1 if unchecked
-  let count = 0;
-  jaimePas.forEach((i) => i.addEventListener("click"));
-
-  const result = `
-  <p>
-    ${likeCounter} <span><i class="fa-solid fa-heart"></i></span>
-  </p>
-  `;
-
-  return (likesContainer.innerHTML = result);
-}
-
-async function renderPrice() {
-  const priceContainer = document.querySelector(".likeprice-container__price");
-  priceContainer.innerHTML = factory.getPrice();
-}
-
-async function init() {
-  const photographer = await getPhotographersById();
-  const medias = await getMediasByPhotographersId();
-
-  // console.log(photographer);
-  // console.log(medias);
-  factory = photographerTemplate(photographer);
-  factoryMedia = mediaTemplate(medias);
-  await renderHeader();
-  await displayMedia(medias);
-  Lightbox.init(medias);
-  await renderPrice();
-  await counterLike(medias);
-}
-
-init();
 const app = new App();
 app.main();
