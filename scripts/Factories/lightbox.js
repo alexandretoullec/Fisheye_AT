@@ -57,19 +57,39 @@ class Lightbox {
 
     const video = document.createElement("video");
 
-    video.setAttribute("src", url);
+    // video.setAttribute("src", url);
 
     const container = this.element.querySelector(".lightbox__container");
     const loader = document.createElement("div");
     loader.classList.add("lightbox__loader");
     container.innerHTML = "";
-    container.appendChild(loader);
+    // container.appendChild(loader);
 
-    image.onload = () => {
-      container.removeChild(loader);
+    if (url.endsWith(".jpg")) {
+      // container.removeChild(loader);
+
       container.appendChild(image);
       this.url = url;
-    };
+
+      // container.removeChild(loader);
+
+      // container.appendChild(image);
+      // this.url = url;
+    } else if (url.endsWith(".mp4")) {
+      // container.removeChild(loader);
+      container.appendChild(video);
+      video.setAttribute("src", url);
+      video.controls = true;
+      video.autoplay = true;
+      this.url = url;
+    }
+
+    // image.onload = () => {
+    //   container.removeChild(loader);
+
+    //   container.appendChild(image);
+    //   this.url = url;
+    // };
 
     console.log(this.medias);
 
@@ -111,7 +131,7 @@ class Lightbox {
   }
 
   /**
-   * Ferme la lightbox
+   * image suivante
    * @param {MouseEvent/KeyboardEvent} e
    */
 
@@ -129,7 +149,7 @@ class Lightbox {
   }
 
   /**
-   * Ferme la lightbox
+   * image précédente
    * @param {MouseEvent/KeyboardEvent} e
    */
 
