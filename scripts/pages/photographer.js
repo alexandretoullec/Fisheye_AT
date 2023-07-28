@@ -1,3 +1,84 @@
+// class Api {
+//   /**
+//    *
+//    * @param {string} url
+//    */
+//   constructor(url) {
+//     this._url = url;
+//   }
+
+//   async getPhotographers() {
+//     return fetch(this._url)
+//       .then((res) => res.json())
+//       .then((res) => res.photographers)
+//       .catch((err) => console.log("an error occurs", err));
+//   }
+
+//   async getMedias() {
+//     return fetch(thid._url)
+//       .then((res) => res.json())
+//       .then((res) => res.media)
+//       .catch((err) => console.log("an error occurs", err));
+//   }
+// }
+
+// class PhotographerApi extends Api {
+//   /**
+//    *
+//    * @param {string} url
+//    */
+//   constructor(url) {
+//     super(url);
+//   }
+
+//   async getDatas() {
+//     return await this.getPhotographers();
+//   }
+// }
+
+// class mediasApi extends Api {
+//   /**
+//    *
+//    * @param {string} url
+//    */
+
+//   constructir(url){
+//     super(url);
+//   }
+
+//   async getDatas(){
+//     return await this.getMedias();
+//   }
+// }
+
+class App {
+  constructor() {
+    this.photographerAPI = new PhotographerApi("data/photographers.json");
+    this.mediasApi = new mediasApi("data/photographers.json");
+    // this.photographers = this.photographerAPI.photographers;
+
+    // this.params = new URL(document.location).searchParams;
+    // this.id = parseInt(this.params.get("id"));
+
+    // this.photographer = this.photographers.find(
+    //   (photographer) => photographer.id === id
+    // );
+  }
+
+  async main() {
+    const photographersDatas = await this.photographerAPI.getDatas();
+    const mediasData = await this.mediasApi.getDatas();
+    console.log(photographersDatas);
+    console.log(mediasData);
+    const params = new URL(document.location).searchParams;
+    const id = parseInt(params.get("id"));
+
+    const photographer = photographersDatas.find(
+      (photographer) => photographer.id === id
+    );
+  }
+}
+
 //Mettre le code JavaScript lié à la page photographer.html
 
 // récupérer l'ID du photographe dans l'URL et retourne les datas photographes
@@ -103,3 +184,5 @@ async function init() {
 }
 
 init();
+const app = new App();
+app.main();

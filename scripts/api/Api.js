@@ -7,10 +7,17 @@ class Api {
     this._url = url;
   }
 
-  async get() {
+  async getPhotographers() {
     return fetch(this._url)
       .then((res) => res.json())
-      .then((res) => res.data)
+      .then((res) => res.photographers)
+      .catch((err) => console.log("an error occurs", err));
+  }
+
+  async getMedias() {
+    return fetch(this._url)
+      .then((res) => res.json())
+      .then((res) => res.media)
       .catch((err) => console.log("an error occurs", err));
   }
 }
@@ -25,6 +32,21 @@ class PhotographerApi extends Api {
   }
 
   async getDatas() {
-    return await this.get();
+    return await this.getPhotographers();
+  }
+}
+
+class mediasApi extends Api {
+  /**
+   *
+   * @param {string} url
+   */
+
+  constructor(url) {
+    super(url);
+  }
+
+  async getDatas() {
+    return await this.getMedias();
   }
 }
