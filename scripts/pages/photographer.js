@@ -10,6 +10,8 @@ class App {
     //initiate factories
     this.factory = null;
     this.factoryMedia = null;
+    //DOM media container
+    this.mediaContainer = document.querySelector(".photograph-imgs-container");
   }
 
   async displayHeader(photographer) {
@@ -21,19 +23,53 @@ class App {
     mainCont.innerHTML = this.factory.getUserHeader();
   }
 
-  async displayMedia(medias) {
+  displayMedia(medias) {
     //initiate factoty media
     this.factoryMedia = mediaTemplate(medias);
-
-    //DOM media container
-    const mediaContainer = document.querySelector(".photograph-imgs-container");
 
     // for each media create card from factory mediaTemplate getMedia
     medias.forEach((media) => {
       const mediasPhotograph = mediaTemplate(media);
       const userCardDOM = mediasPhotograph.getMedia();
-      mediaContainer.appendChild(userCardDOM);
+      this.mediaContainer.appendChild(userCardDOM);
     });
+    Lightbox.init();
+  }
+
+  sortMedia(medias) {
+    const optPop = document.querySelector(".optPop");
+    const optDate = document.querySelector(".optDate");
+    const optAlpha = document.querySelector(".optAlpha");
+    // let sortContainer = document.querySelector(".photograph-imgs-container");
+
+    let sortedMedia = [];
+
+    const sortBydate = () => {
+      this.mediaContainer.innerHTML = "";
+      sortedMedia = medias.sort((a, b) => new Date(a.date) - new Date(b.date));
+      app.displayMedia(sortedMedia);
+      // Lightbox.init();
+    };
+
+    const sortByPopularity = () => {
+      this.mediaContainer.innerHTML = "";
+      sortedMedia = medias.sort((a, b) => b.likes - a.likes);
+      app.displayMedia(sortedMedia);
+      // sortedMedia = [];
+      // Lightbox.init();
+    };
+
+    const sortByTitle = () => {
+      this.mediaContainer.innerHTML = "";
+      sortedMedia = medias.sort((a, b) => (a.title < b.title ? -1 : 1));
+      app.displayMedia(sortedMedia);
+      // sortedMedia = [];
+      // Lightbox.init();
+    };
+
+    optDate.addEventListener("click", sortBydate);
+    optPop.addEventListener("click", sortByPopularity);
+    optAlpha.addEventListener("click", sortByTitle);
   }
 
   async counterLike(medias) {
@@ -86,10 +122,10 @@ class App {
     );
 
     app.displayHeader(photographer);
+    app.sortMedia(medias);
     app.displayMedia(medias);
     app.counterLike(medias);
     app.renderPrice(photographer);
-    Lightbox.init(medias);
   }
 }
 

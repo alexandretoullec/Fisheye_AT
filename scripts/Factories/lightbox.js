@@ -13,10 +13,7 @@ class Lightbox {
       )
     );
 
-    // console.log(links);
-
     const gallery = links.map((link) => link.getAttribute("href"));
-    // debugger;
 
     links.forEach((link) =>
       link.addEventListener("click", (e) => {
