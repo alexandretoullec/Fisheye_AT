@@ -75,7 +75,7 @@ class App {
   async counterLike(medias) {
     //dom
     const likesContainer = document.querySelector(".likeprice-container__like");
-    const jaime = document.querySelectorAll(".checked");
+    const likeBtn = document.querySelectorAll(".fa-heart");
     const jaimePas = document.querySelectorAll(".unchecked");
 
     // count likes from datas
@@ -83,8 +83,25 @@ class App {
     let likeCounter = likes.reduce((a, b) => a + b);
 
     // count likes if checked or -1 if unchecked
+
     let count = 0;
-    // jaimePas.forEach((i) => i.addEventListener("click",console.log("clicked");));
+
+    likeBtn.forEach((i) =>
+      i.addEventListener("click", () => {
+        if (i.classList.contains("fa-regular")) {
+          likesContainer.innerHTML = `${
+            parseInt(likesContainer.textContent) + 1
+          } <span><i class="fa-solid fa-heart"></i></span>`;
+        }
+        if (i.classList.contains("fa-solid")) {
+          likesContainer.innerHTML = `${
+            parseInt(likesContainer.textContent) - 1
+          } <span><i class="fa-solid fa-heart"></i></span>`;
+        }
+      })
+    );
+
+    console.log(count);
 
     const result = `
     <p>

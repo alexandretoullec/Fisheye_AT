@@ -12,6 +12,7 @@ img {
   /* max-width: auto; */
   max-width: 100%;
   max-height: 100vh;
+  object-fit: cover;
 }
 
 video {
@@ -67,6 +68,12 @@ h1 {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.photographer_section article a:focus {
+  opacity: 0.6;
 }
 
 .photographer_section article img {
@@ -96,4 +103,53 @@ h1 {
 .photographer_section article p {
   color: #757575;
   font-size: 9px;
+}
+
+/* media quieries */
+
+@media screen and (max-width: 992px) {
+  body {
+    /* background-color: blue; */
+    padding: 1rem;
+  }
+
+  header {
+    flex-direction: column;
+    font-size: 1rem;
+    /* justify-content: space-between; */
+    width: 100%;
+  }
+
+  header a {
+    display: flex;
+    /* justify-content: flex-start; */
+    /* text-align: left; */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* background: #757575; */
+  }
+
+  .logo {
+    /* background: #901c1c; */
+    margin: 0;
+    /* text-align: left; */
+  }
+
+  header h1 {
+    text-align: right;
+    width: 100%;
+  }
+
+  .photographer_section {
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    /* background-color: olive; */
+  }
 }

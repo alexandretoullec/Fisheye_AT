@@ -88,7 +88,7 @@ class Lightbox {
     //   this.url = url;
     // };
 
-    console.log(this.medias);
+    // console.log(this.medias);
 
     // image.onload = () => {
     //   container.removeChild(loader);

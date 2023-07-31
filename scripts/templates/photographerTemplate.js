@@ -10,7 +10,7 @@ function photographerTemplate(data) {
     const photographerCard = `
     
       <a href="./photographers.html?id=${id}" aria-label="lien vers la page de ${name}">
-        <img src="${picture}" alt="photo de ${name}">
+        <img src="${picture}" alt="${name}">
         <h2>${name}</h2>
       </a>
         <h3>${city} , ${country}</h3>

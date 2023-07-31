@@ -280,3 +280,47 @@ form input {
 .heart-checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
+
+/* media queries */
+
+@media screen and (max-width: 992px) {
+  .photograph-header {
+    padding: 0;
+    margin: 1rem;
+  }
+  .photograph-imgs-container {
+    /* display: grid; */
+    grid-template-columns: 1fr 1fr;
+    /* gap: 7rem; */
+    /* padding: 3rem; */
+  }
+  .likeprice-container {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .photograph-header {
+    padding: 0;
+    flex-direction: column;
+    margin: 1rem;
+    margin-bottom: 6rem;
+    align-items: flex-start;
+    /* justify-content: space-between; */
+    height: 25rem;
+  }
+
+  .photograph-header-descr,
+  .photograph-header button {
+    margin-bottom: 1rem;
+  }
+  .photograph-imgs-container {
+    /* display: grid; */
+    grid-template-columns: 1fr;
+    /* gap: 7rem; */
+    /* padding: 3rem; */
+  }
+  .likeprice-container {
+    width: 80%;
+  }
+}
