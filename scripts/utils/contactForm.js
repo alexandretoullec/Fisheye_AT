@@ -1,16 +1,13 @@
-class ContactForm {
-  constructor(data) {
-    this.name = data.name;
-  }
+function contactForm(data) {
+  const { name } = data;
 
-  getFormContact() {
+  function getFormContact() {
     return `
     <div class="modal">
           <header>
-            <h2>Contactez-moi<br>
-            ${this.name}
+            <h2>Contactez-moi<br>${name}
             </h2>
-            <img src="assets/icons/close.svg" onclick="closeModal()" />
+            <img class="closeModalBtn" src="assets/icons/close.svg"  />
           </header>
           <form name="contactez-moi" method="post" class="contact-form">
             <div class="contact-form__prenom">
@@ -36,23 +33,26 @@ class ContactForm {
     `;
   }
 
-  displayModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "block";
-  }
+  return { getFormContact };
 
-  closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
-  }
+  // displayModal() {
+  //   const modalCont = document.getElementById("contact_modal");
+  //   modalCont.innerHTML = this.getFormContact();
+  //   modalCont.style.display = "block";
+  // }
+
+  // closeModal() {
+  //   const modal = document.getElementById("contact_modal");
+  //   modal.style.display = "none";
+  // }
 }
 
-function displayModal() {
-  const modal = document.getElementById("contact_modal");
-  modal.style.display = "block";
-}
+// function displayModal() {
+//   const modal = document.getElementById("contact_modal");
+//   modal.style.display = "block";
+// }
 
-function closeModal() {
-  const modal = document.getElementById("contact_modal");
-  modal.style.display = "none";
-}
+// function closeModal() {
+//   const modal = document.getElementById("contact_modal");
+//   modal.style.display = "none";
+// }

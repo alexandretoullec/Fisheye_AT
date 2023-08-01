@@ -36,7 +36,7 @@ class App {
     Lightbox.init();
   }
 
-  sortMedia(medias) {
+  async sortMedia(medias) {
     const optPop = document.querySelector(".optPop");
     const optDate = document.querySelector(".optDate");
     const optAlpha = document.querySelector(".optAlpha");
@@ -101,8 +101,6 @@ class App {
       })
     );
 
-    console.log(count);
-
     const result = `
     <p>
       ${likeCounter} <span><i class="fa-solid fa-heart"></i></span>
@@ -118,6 +116,25 @@ class App {
       ".likeprice-container__price"
     );
     priceContainer.innerHTML = this.factory.getPrice();
+  }
+
+  async renderForm(photographer) {
+    const btnModalOpen = document.querySelector(".contact_button");
+
+    this.modal = contactForm(photographer);
+
+    const modalCont = document.getElementById("contact_modal");
+    modalCont.innerHTML = this.modal.getFormContact();
+    btnModalOpen.addEventListener(
+      "click",
+      () => (modalCont.style.display = "block")
+    );
+
+    const btnCloseModal = document.querySelector(".closeModalBtn");
+    btnCloseModal.addEventListener(
+      "click",
+      () => (modalCont.style.display = "none")
+    );
   }
 
   async main() {
@@ -143,6 +160,7 @@ class App {
     app.displayMedia(medias);
     app.counterLike(medias);
     app.renderPrice(photographer);
+    app.renderForm(photographer);
   }
 }
 

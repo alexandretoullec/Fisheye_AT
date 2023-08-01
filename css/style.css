@@ -7,6 +7,12 @@
   scroll-behavior: smooth;
 }
 
+:root {
+  --main-red: #901c1c;
+  --fc-orange: #d3573c;
+  --bg-orange: #db8876;
+}
+
 img {
   /* max-height: 120vh; */
   /* max-width: auto; */

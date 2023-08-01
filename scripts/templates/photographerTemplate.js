@@ -9,7 +9,7 @@ function photographerTemplate(data) {
   function getUserCardDOM() {
     const photographerCard = `
     
-      <a href="./photographers.html?id=${id}" aria-label="lien vers la page de ${name}">
+      <a href="./photographers.html?id=${id}" aria-label="${name}">
         <img src="${picture}" alt="${name}">
         <h2>${name}</h2>
       </a>
@@ -33,11 +33,11 @@ function photographerTemplate(data) {
         <h4>${tagline}</h4>
       </div>
 
-      <button class="contact_button" onclick="displayModal()">
+      <button class="contact_button"  aria-label="Contact Me">
       Contactez-moi
       </button>
       
-      <img src=${picture} alt=photo de ${name}>
+      <img src=${picture} alt=${name}>
       
     
   `;
