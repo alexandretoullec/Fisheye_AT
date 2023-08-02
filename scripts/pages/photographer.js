@@ -23,7 +23,7 @@ class App {
     mainCont.innerHTML = this.factory.getUserHeader();
   }
 
-  displayMedia(medias) {
+  async displayMedia(medias) {
     //initiate factoty media
     this.factoryMedia = mediaTemplate(medias);
 
@@ -37,39 +37,52 @@ class App {
   }
 
   async sortMedia(medias) {
+    const selectElement = document.querySelector(".selected");
+    selectElement.setAttribute("aria-expanded", false);
+    const options = document.querySelector(".options");
     const optPop = document.querySelector(".optPop");
     const optDate = document.querySelector(".optDate");
-    const optAlpha = document.querySelector(".optAlpha");
+    const optTitre = document.querySelector(".optTitre");
+    let sortContainer = document.querySelector(".sort-list");
     // let sortContainer = document.querySelector(".photograph-imgs-container");
 
     let sortedMedia = [];
 
-    const sortBydate = () => {
-      this.mediaContainer.innerHTML = "";
-      sortedMedia = medias.sort((a, b) => new Date(a.date) - new Date(b.date));
-      app.displayMedia(sortedMedia);
-      // Lightbox.init();
-    };
+    selectElement.addEventListener("click", () => {
+      document.querySelector(".fa-chevron-down").classList.toggle("chevron-up");
+      let ariaExpanded = selectElement.getAttribute("aria-expanded");
+      ariaExpanded == "true"
+        ? (ariaExpanded = "false")
+        : (ariaExpanded = "true");
+      selectElement.setAttribute("aria-expanded", ariaExpanded);
+      options.classList.toggle("hidden");
+    });
 
-    const sortByPopularity = () => {
-      this.mediaContainer.innerHTML = "";
-      sortedMedia = medias.sort((a, b) => b.likes - a.likes);
-      app.displayMedia(sortedMedia);
-      // sortedMedia = [];
-      // Lightbox.init();
-    };
+    if (optDate) {
+      optDate.addEventListener("click", () => {
+        this.mediaContainer.innerHTML = "";
 
-    const sortByTitle = () => {
-      this.mediaContainer.innerHTML = "";
-      sortedMedia = medias.sort((a, b) => (a.title < b.title ? -1 : 1));
-      app.displayMedia(sortedMedia);
-      // sortedMedia = [];
-      // Lightbox.init();
-    };
+        sortedMedia = medias.sort(
+          (a, b) => new Date(a.date) - new Date(b.date)
+        );
+        app.displayMedia(sortedMedia);
+      });
+    }
+    if (optPop) {
+      optPop.addEventListener("click", () => {
+        this.mediaContainer.innerHTML = "";
+        sortedMedia = medias.sort((a, b) => b.likes - a.likes);
+        app.displayMedia(sortedMedia);
+      });
+    }
 
-    optDate.addEventListener("click", sortBydate);
-    optPop.addEventListener("click", sortByPopularity);
-    optAlpha.addEventListener("click", sortByTitle);
+    if (optTitre) {
+      optTitre.addEventListener("click", () => {
+        this.mediaContainer.innerHTML = "";
+        sortedMedia = medias.sort((a, b) => (a.title < b.title ? -1 : 1));
+        app.displayMedia(sortedMedia);
+      });
+    }
   }
 
   async counterLike(medias) {
@@ -135,6 +148,8 @@ class App {
       "click",
       () => (modalCont.style.display = "none")
     );
+
+    this.modal.logOnSubmit();
   }
 
   async main() {

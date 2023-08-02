@@ -27,8 +27,30 @@
     <main id="main">
       <div class="photograph-header"></div>
       <div class="photograph-sort">
-        <p>Trier par</p>
-        <ul>
+        <label for="trier">Trier par</label>
+        <div class="sort-list" role="listbox">
+          <button
+            class="selected"
+            id="selected"
+            aria_labelledby="listboxlabel"
+            aria-haspopup="listbox"
+            aria-label="select"
+          >
+            Selectionner<i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="options hidden">
+            <button class="optPop" role="option" aria-label="Populaire">
+              Populaire
+            </button>
+            <button class="optTitre" role="option" aria-label="Titre">
+              Titre
+            </button>
+            <button class="optDate" role="option" aria-label="Date">
+              Date
+            </button>
+          </div>
+        </div>
+        <!-- <ul id="trier">
           <li class="deroulant">
             <a href="#" class="optPop">Popularité</a>
             <ul class="sous">
@@ -36,39 +58,12 @@
               <li><a href="#" class="optAlpha">Titre</a></li>
             </ul>
           </li>
-        </ul>
+        </ul> -->
       </div>
 
       <div class="photograph-imgs-container"></div>
 
-      <div id="contact_modal" class="contact_modal">
-        <!-- <div class="modal">
-          <header>
-            <h2>Contactez-moi</h2>
-            <img src="assets/icons/close.svg" />
-          </header>
-          <form name="contactez-moi" method="post" class="contact-form">
-            <div class="contact-form__prenom">
-              <label for="prenom">Prénom</label>
-              <input type="text" name="prenom" id="prenom" />
-            </div>
-            <div class="contact-form__nom">
-              <label for="nom">Nom</label>
-              <input type="text" name="nom" id="nom" />
-            </div>
-            <div class="contact-form__email">
-              <label for="email">Email</label>
-              <input type="email" name="email" id="email" />
-            </div>
-            <div class="contact-form__msg">
-              <label for="msg">Votre Message</label>
-              <textarea name="msg" id="msg" rows="11" cols="120"></textarea>
-            </div>
-
-            <button type="submit" class="contact_button">Envoyer</button>
-          </form>
-        </div> -->
-      </div>
+      <div id="contact_modal" class="contact_modal"></div>
 
       <div class="likeprice-container">
         <div class="likeprice-container__like">

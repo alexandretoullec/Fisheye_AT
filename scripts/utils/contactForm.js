@@ -27,13 +27,27 @@ function contactForm(data) {
               <textarea name="msg" id="msg" rows="11" cols="120"></textarea>
             </div>
 
-            <button type="submit" class="contact_button">Envoyer</button>
+            <button type="submit" class="submit-button">Envoyer</button>
           </form>
         </div>
     `;
   }
 
-  return { getFormContact };
+  function logOnSubmit() {
+    const submitBtn = document.querySelector(".submit-button");
+    const form = document.querySelector("form");
+    const inputs = form.querySelectorAll("input,#msg");
+
+    submitBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      inputs.forEach((input) => {
+        console.log(input.value);
+        input.value = "";
+      });
+    });
+  }
+
+  return { getFormContact, logOnSubmit };
 
   // displayModal() {
   //   const modalCont = document.getElementById("contact_modal");
