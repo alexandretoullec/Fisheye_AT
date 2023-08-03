@@ -22,6 +22,7 @@ class Api {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 class PhotographerApi extends Api {
   /**
    *
@@ -36,6 +37,7 @@ class PhotographerApi extends Api {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 class mediasApi extends Api {
   /**
    *
