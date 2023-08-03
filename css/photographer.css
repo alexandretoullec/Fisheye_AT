@@ -36,6 +36,7 @@
   height: 10rem;
   width: 10rem;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 /************************** Modal *************************/
@@ -399,7 +400,7 @@ form input {
     justify-content: center;
     align-items: center;
     /* justify-content: space-between; */
-    height: 25rem;
+    height: 40rem;
   }
 
   .photograph-header-descr,
@@ -412,6 +413,7 @@ form input {
     grid-template-columns: 1fr;
     /* gap: 7rem; */
     /* padding: 3rem; */
+    padding-top: 5rem;
   }
   .likeprice-container {
     width: 85%;

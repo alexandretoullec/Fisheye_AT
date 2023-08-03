@@ -70,6 +70,7 @@ class App {
           (a, b) => new Date(a.date) - new Date(b.date)
         );
         app.displayMedia(sortedMedia);
+        app.counterLike(medias);
       });
     }
     if (optPop) {
@@ -77,6 +78,7 @@ class App {
         this.mediaContainer.innerHTML = "";
         sortedMedia = medias.sort((a, b) => b.likes - a.likes);
         app.displayMedia(sortedMedia);
+        app.counterLike(medias);
       });
     }
 
@@ -85,6 +87,7 @@ class App {
         this.mediaContainer.innerHTML = "";
         sortedMedia = medias.sort((a, b) => (a.title < b.title ? -1 : 1));
         app.displayMedia(sortedMedia);
+        app.counterLike(medias);
       });
     }
   }

@@ -6,6 +6,6 @@ document.onreadystatechange = function () {
     setTimeout(() => {
       document.querySelector("#loader").style.display = "none";
       document.querySelector("body").style.visibility = "visible";
-    }, 1000);
+    }, 500);
   }
 };
