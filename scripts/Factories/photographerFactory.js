@@ -20,8 +20,10 @@ class photographerFactory {
     this.priceData = document.createElement("p");
 
     //attributes et class
-    this;
-    containerLink.setAttribute("href", `./photographers.html?id=${this.id}`);
+    this.containerLink.setAttribute(
+      "href",
+      `./photographers.html?id=${this.id}`
+    );
     this.containerLink.setAttribute(
       "aria-label",
       `lien vers la page de ${this.name}`

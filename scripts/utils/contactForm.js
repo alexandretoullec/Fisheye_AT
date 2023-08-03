@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function contactForm(data) {
   const { name } = data;
 
@@ -7,7 +8,7 @@ function contactForm(data) {
           <header>
             <h2>Contactez-moi<br>${name}
             </h2>
-            <img class="closeModalBtn" src="assets/icons/close.svg"  />
+            <img class="closeModalBtn" src="assets/icons/close.svg"  alt="close button"/>
           </header>
           <form name="contactez-moi" method="post" class="contact-form">
             <div class="contact-form__prenom">

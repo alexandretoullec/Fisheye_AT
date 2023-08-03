@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * @property {HTMLElement} element
  * @property {string[]} images Chemins des images de la lightbox

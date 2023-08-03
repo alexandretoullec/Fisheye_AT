@@ -1,6 +1,8 @@
 class App {
   constructor() {
+    // eslint-disable-next-line no-undef
     this.photographerAPI = new PhotographerApi("data/photographers.json");
+    // eslint-disable-next-line no-undef
     this.mediasApi = new mediasApi("data/photographers.json");
     //show the url of the page
     this.params = new URL(document.location).searchParams;
@@ -16,6 +18,7 @@ class App {
 
   async displayHeader(photographer) {
     //initiate factory photographer template
+    // eslint-disable-next-line no-undef
     this.factory = photographerTemplate(photographer);
     //dom of the header
     const mainCont = document.querySelector(".photograph-header");
@@ -25,14 +28,17 @@ class App {
 
   async displayMedia(medias) {
     //initiate factoty media
+    // eslint-disable-next-line no-undef
     this.factoryMedia = mediaTemplate(medias);
 
     // for each media create card from factory mediaTemplate getMedia
     medias.forEach((media) => {
+      // eslint-disable-next-line no-undef
       const mediasPhotograph = mediaTemplate(media);
       const userCardDOM = mediasPhotograph.getMedia();
       this.mediaContainer.appendChild(userCardDOM);
     });
+    // eslint-disable-next-line no-undef
     Lightbox.init();
   }
 
@@ -43,8 +49,6 @@ class App {
     const optPop = document.querySelector(".optPop");
     const optDate = document.querySelector(".optDate");
     const optTitre = document.querySelector(".optTitre");
-    let sortContainer = document.querySelector(".sort-list");
-    // let sortContainer = document.querySelector(".photograph-imgs-container");
 
     let sortedMedia = [];
 
@@ -89,15 +93,12 @@ class App {
     //dom
     const likesContainer = document.querySelector(".likeprice-container__like");
     const likeBtn = document.querySelectorAll(".fa-heart");
-    const jaimePas = document.querySelectorAll(".unchecked");
 
     // count likes from datas
     const likes = medias.map((media) => media.likes);
     let likeCounter = likes.reduce((a, b) => a + b);
 
     // count likes if checked or -1 if unchecked
-
-    let count = 0;
 
     likeBtn.forEach((i) =>
       i.addEventListener("click", () => {
@@ -124,6 +125,7 @@ class App {
   }
 
   async renderPrice(photographer) {
+    // eslint-disable-next-line no-undef
     this.factory = photographerTemplate(photographer);
     const priceContainer = document.querySelector(
       ".likeprice-container__price"
@@ -134,6 +136,7 @@ class App {
   async renderForm(photographer) {
     const btnModalOpen = document.querySelector(".contact_button");
 
+    // eslint-disable-next-line no-undef
     this.modal = contactForm(photographer);
 
     const modalCont = document.getElementById("contact_modal");
@@ -173,9 +176,9 @@ class App {
     app.displayHeader(photographer);
     app.sortMedia(medias);
     app.displayMedia(medias);
-    app.counterLike(medias);
     app.renderPrice(photographer);
     app.renderForm(photographer);
+    app.counterLike(medias);
   }
 }
 

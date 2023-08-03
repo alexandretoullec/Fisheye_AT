@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -19,6 +19,7 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
+    <div id="loader" class="center"></div>
     <header>
       <a href="/index.html"
         ><img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page"
@@ -28,7 +29,7 @@
       <div class="photograph-header"></div>
       <div class="photograph-sort">
         <label for="trier">Trier par</label>
-        <div class="sort-list" role="listbox">
+        <div class="sort-list" role="listbox" aria-label="listbox">
           <button
             class="selected"
             id="selected"
@@ -36,7 +37,7 @@
             aria-haspopup="listbox"
             aria-label="select"
           >
-            Selectionner<i class="fas fa-chevron-down"></i>
+            Selectionner <i class="fas fa-chevron-down"></i>
           </button>
           <div class="options hidden">
             <button class="optPop" role="option" aria-label="Populaire">
@@ -78,8 +79,10 @@
     </main>
     <!-- pages -->
     <!-- <script src="/scripts/utils/dropDown.js"></script> -->
+    <script src="/scripts/utils/loader.js" defer></script>
     <script src="scripts/templates/mediaTemplate.js"></script>
     <script src="scripts/templates/photographerTemplate.js"></script>
+
     <script src="/scripts/utils/contactForm.js"></script>
     <script src="/scripts/utils/sort.js"></script>
     <script src="/scripts/Factories/lightbox.js"></script>

@@ -1,5 +1,6 @@
 //factory function simplified version of classes
 
+// eslint-disable-next-line no-unused-vars
 function photographerTemplate(data) {
   //destructuring objects from data
   const { id, name, portrait, city, country, tagline, price } = data;
@@ -28,9 +29,9 @@ function photographerTemplate(data) {
   function getUserHeader() {
     const headerPhotographer = `
       <div class="photograph-header-descr">
-        <h2>${name}</h2>
-        <h3> ${city} , ${country}</h3>
-        <h4>${tagline}</h4>
+        <h1>${name}</h1>
+        <h2> ${city}, ${country}</h2>
+        <h3>${tagline}</h3>
       </div>
 
       <button class="contact_button"  aria-label="Contact Me">

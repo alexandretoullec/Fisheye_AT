@@ -5,21 +5,28 @@
   background-color: #fafafa;
   height: 300px;
   margin: 0 100px;
-  padding: 5rem;
+  padding: 3rem;
 }
 
-.photograph-header h2 {
+.photograph-header-descr {
+  width: auto;
+}
+
+.photograph-header h1 {
   color: #d3573c;
   font-size: 64px;
   font-weight: 400;
   line-height: 83px;
+  margin-bottom: 1rem;
 }
-.photograph-header h3 {
-  font-size: 24px;
+.photograph-header h2 {
+  color: #901c1c;
+  font-size: 35px;
   font-weight: 400;
   line-height: 31px;
+  margin-bottom: 1.5rem;
 }
-.photograph-header h4 {
+.photograph-header h3 {
   font-size: 18px;
   font-weight: 400;
   line-height: 23px;
@@ -57,6 +64,11 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.contact_button:hover,
+.submit-button:hover {
+  background-color: #d3573c;
 }
 
 .modal {
@@ -258,6 +270,12 @@ form input {
 .likeContainer .fa-solid,
 .fa-regular {
   cursor: pointer;
+}
+
+.explain {
+  visibility: hidden;
+  height: 0px;
+  width: 0px;
 }
 
 .likeContainer .fa-solid {
