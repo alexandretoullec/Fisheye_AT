@@ -36,21 +36,6 @@ class PhotographerApi extends Api {
   }
 }
 
-class mediasApi extends Api {
-  /**
-   *
-   * @param {string} url
-   */
-
-  constructor(url) {
-    super(url);
-  }
-
-  async getDatas() {
-    return await this.getMedias();
-  }
-}
-
 class Index {
   constructor() {
     this.photographerSection = document.querySelector(".photographer_section");
