@@ -1,58 +1,4 @@
 /* eslint-disable no-undef */
-// class Api {
-//   /**
-//    *
-//    * @param {string} url
-//    */
-//   constructor(url) {
-//     this._url = url;
-//   }
-
-//   async getPhotographers() {
-//     return fetch(this._url)
-//       .then((res) => res.json())
-//       .then((res) => res.photographers)
-//       .catch((err) => console.log("an error occurs", err));
-//   }
-
-//   async getMedias() {
-//     return fetch(this._url)
-//       .then((res) => res.json())
-//       .then((res) => res.media)
-//       .catch((err) => console.log("an error occurs", err));
-//   }
-// }
-
-// // eslint-disable-next-line no-unused-vars
-// class PhotographerApi extends Api {
-//   /**
-//    *
-//    * @param {string} url
-//    */
-//   constructor(url) {
-//     super(url);
-//   }
-
-//   async getDatas() {
-//     return await this.getPhotographers();
-//   }
-// }
-
-// // eslint-disable-next-line no-unused-vars
-// class mediasApi extends Api {
-//   /**
-//    *
-//    * @param {string} url
-//    */
-
-//   constructor(url) {
-//     super(url);
-//   }
-
-//   async getDatas() {
-//     return await this.getMedias();
-//   }
-// }
 
 class App {
   constructor() {
@@ -196,16 +142,25 @@ class App {
 
     const modalCont = document.getElementById("contact_modal");
     modalCont.innerHTML = this.modal.getFormContact();
-    btnModalOpen.addEventListener(
-      "click",
-      () => (modalCont.style.display = "block")
-    );
+
+    btnModalOpen.addEventListener("click", () => {
+      modalCont.style.display = "block";
+      document.getElementById("prenom").focus();
+    });
 
     const btnCloseModal = document.querySelector(".closeModalBtn");
     btnCloseModal.addEventListener(
       "click",
       () => (modalCont.style.display = "none")
     );
+
+    document.addEventListener("keyup", onKeyUp);
+
+    function onKeyUp(e) {
+      if (e.key === "Escape") {
+        modalCont.style.display = "none";
+      }
+    }
 
     this.modal.logOnSubmit();
   }

@@ -13,7 +13,7 @@ function contactForm(data) {
           <form name="contactez-moi" method="post" class="contact-form">
             <div class="contact-form__prenom">
               <label for="prenom">Prénom</label>
-              <input type="text" name="prenom" id="prenom"/>
+              <input type="text" name="prenom" id="prenom" autofocus/>
             </div>
             <div class="contact-form__nom">
               <label for="nom">Nom</label>
@@ -51,25 +51,4 @@ function contactForm(data) {
   }
 
   return { getFormContact, logOnSubmit };
-
-  // displayModal() {
-  //   const modalCont = document.getElementById("contact_modal");
-  //   modalCont.innerHTML = this.getFormContact();
-  //   modalCont.style.display = "block";
-  // }
-
-  // closeModal() {
-  //   const modal = document.getElementById("contact_modal");
-  //   modal.style.display = "none";
-  // }
 }
-
-// function displayModal() {
-//   const modal = document.getElementById("contact_modal");
-//   modal.style.display = "block";
-// }
-
-// function closeModal() {
-//   const modal = document.getElementById("contact_modal");
-//   modal.style.display = "none";
-// }
