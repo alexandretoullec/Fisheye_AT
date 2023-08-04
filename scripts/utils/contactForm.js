@@ -3,7 +3,7 @@ function contactForm(data) {
   const { name } = data;
 
   function getFormContact() {
-    return `
+    const formContent = `
     <div class="modal">
           <header>
             <h2>Contactez-moi<br>${name}
@@ -13,7 +13,7 @@ function contactForm(data) {
           <form name="contactez-moi" method="post" class="contact-form">
             <div class="contact-form__prenom">
               <label for="prenom">Prénom</label>
-              <input type="text" name="prenom" id="prenom" />
+              <input type="text" name="prenom" id="prenom"/>
             </div>
             <div class="contact-form__nom">
               <label for="nom">Nom</label>
@@ -32,6 +32,8 @@ function contactForm(data) {
           </form>
         </div>
     `;
+
+    return formContent;
   }
 
   function logOnSubmit() {

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 class Api {
   /**
    *
@@ -55,9 +56,8 @@ class mediasApi extends Api {
 
 class App {
   constructor() {
-    // eslint-disable-next-line no-undef
     this.photographerAPI = new PhotographerApi("data/photographers.json");
-    // eslint-disable-next-line no-undef
+
     this.mediasApi = new mediasApi("data/photographers.json");
     //show the url of the page
     this.params = new URL(document.location).searchParams;
@@ -73,7 +73,7 @@ class App {
 
   async displayHeader(photographer) {
     //initiate factory photographer template
-    // eslint-disable-next-line no-undef
+
     this.factory = photographerTemplate(photographer);
     //dom of the header
     const mainCont = document.querySelector(".photograph-header");
@@ -83,17 +83,16 @@ class App {
 
   async displayMedia(medias) {
     //initiate factoty media
-    // eslint-disable-next-line no-undef
+
     this.factoryMedia = mediaTemplate(medias);
 
     // for each media create card from factory mediaTemplate getMedia
     medias.forEach((media) => {
-      // eslint-disable-next-line no-undef
       const mediasPhotograph = mediaTemplate(media);
       const userCardDOM = mediasPhotograph.getMedia();
       this.mediaContainer.appendChild(userCardDOM);
     });
-    // eslint-disable-next-line no-undef
+
     Lightbox.init();
   }
 
@@ -183,7 +182,6 @@ class App {
   }
 
   async renderPrice(photographer) {
-    // eslint-disable-next-line no-undef
     this.factory = photographerTemplate(photographer);
     const priceContainer = document.querySelector(
       ".likeprice-container__price"
@@ -194,7 +192,6 @@ class App {
   async renderForm(photographer) {
     const btnModalOpen = document.querySelector(".contact_button");
 
-    // eslint-disable-next-line no-undef
     this.modal = contactForm(photographer);
 
     const modalCont = document.getElementById("contact_modal");
