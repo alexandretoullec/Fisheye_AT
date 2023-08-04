@@ -15,6 +15,7 @@ class App {
     this.factoryMedia = null;
     //DOM media container
     this.mediaContainer = document.querySelector(".photograph-imgs-container");
+    this.anchorImgs = this.mediaContainer.querySelectorAll("a");
   }
 
   async displayHeader(photographer) {
@@ -25,6 +26,10 @@ class App {
     const mainCont = document.querySelector(".photograph-header");
     // show the header photograph in the page
     mainCont.innerHTML = this.factory.getUserHeader();
+  }
+
+  async displayLightbox() {
+    Lightbox.init();
   }
 
   async displayMedia(medias) {
@@ -38,8 +43,7 @@ class App {
       const userCardDOM = mediasPhotograph.getMedia();
       this.mediaContainer.appendChild(userCardDOM);
     });
-
-    Lightbox.init();
+    app.displayLightbox();
   }
 
   async sortMedia(medias) {
@@ -137,28 +141,37 @@ class App {
 
   async renderForm(photographer) {
     const btnModalOpen = document.querySelector(".contact_button");
+    const main = document.querySelector("#main");
 
     this.modal = contactForm(photographer);
 
     const modalCont = document.getElementById("contact_modal");
     modalCont.innerHTML = this.modal.getFormContact();
+    modalCont.setAttribute("aria-hidden", true);
+    modalCont.setAttribute("aria-describedby", "modalTitle");
+    main.setAttribute("aria-hidden", false);
 
     btnModalOpen.addEventListener("click", () => {
+      modalCont.ariaHidden = "false";
+      main.ariaHidden = "true";
       modalCont.style.display = "block";
       document.getElementById("prenom").focus();
     });
 
     const btnCloseModal = document.querySelector(".closeModalBtn");
-    btnCloseModal.addEventListener(
-      "click",
-      () => (modalCont.style.display = "none")
-    );
+    btnCloseModal.addEventListener("click", closeModal);
+
+    function closeModal() {
+      modalCont.ariaHidden = "true";
+      main.ariaHidden = "false";
+      modalCont.style.display = "none";
+    }
 
     document.addEventListener("keyup", onKeyUp);
 
     function onKeyUp(e) {
       if (e.key === "Escape") {
-        modalCont.style.display = "none";
+        closeModal();
       }
     }
 
