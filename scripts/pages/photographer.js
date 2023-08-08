@@ -28,8 +28,8 @@ class App {
     mainCont.innerHTML = this.factory.getUserHeader();
   }
 
-  async displayLightbox() {
-    Lightbox.init();
+  async displayLightbox(medias) {
+    Lightbox.init(medias);
   }
 
   async displayMedia(medias) {
@@ -66,34 +66,27 @@ class App {
       options.classList.toggle("hidden");
     });
 
-    if (optDate) {
-      optDate.addEventListener("click", () => {
-        this.mediaContainer.innerHTML = "";
+    optDate.addEventListener("click", () => {
+      this.mediaContainer.innerHTML = "";
 
-        sortedMedia = medias.sort(
-          (a, b) => new Date(a.date) - new Date(b.date)
-        );
-        app.displayMedia(sortedMedia);
-        app.counterLike(medias);
-      });
-    }
-    if (optPop) {
-      optPop.addEventListener("click", () => {
-        this.mediaContainer.innerHTML = "";
-        sortedMedia = medias.sort((a, b) => b.likes - a.likes);
-        app.displayMedia(sortedMedia);
-        app.counterLike(medias);
-      });
-    }
+      sortedMedia = medias.sort((a, b) => new Date(a.date) - new Date(b.date));
+      app.displayMedia(sortedMedia);
+      app.counterLike(medias);
+    });
 
-    if (optTitre) {
-      optTitre.addEventListener("click", () => {
-        this.mediaContainer.innerHTML = "";
-        sortedMedia = medias.sort((a, b) => (a.title < b.title ? -1 : 1));
-        app.displayMedia(sortedMedia);
-        app.counterLike(medias);
-      });
-    }
+    optPop.addEventListener("click", () => {
+      this.mediaContainer.innerHTML = "";
+      sortedMedia = medias.sort((a, b) => b.likes - a.likes);
+      app.displayMedia(sortedMedia);
+      app.counterLike(medias);
+    });
+
+    optTitre.addEventListener("click", () => {
+      this.mediaContainer.innerHTML = "";
+      sortedMedia = medias.sort((a, b) => (a.title < b.title ? -1 : 1));
+      app.displayMedia(sortedMedia);
+      app.counterLike(medias);
+    });
   }
 
   async counterLike(medias) {
@@ -195,7 +188,7 @@ class App {
     const medias = mediasData.filter(
       (media) => media.photographerId === this.id
     );
-
+    // sortMedia(medias);
     app.displayHeader(photographer);
     app.sortMedia(medias);
     app.displayMedia(medias);

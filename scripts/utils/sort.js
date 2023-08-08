@@ -1,35 +1,43 @@
-// function sortMedia(currentMedias) {
-//   //DOM
+// // eslint-disable-next-line no-unused-vars
+// function sortMedia(medias) {
+//   const selectElement = document.querySelector(".selected");
+//   selectElement.setAttribute("aria-expanded", false);
+//   const options = document.querySelector(".options");
 //   const optPop = document.querySelector(".optPop");
 //   const optDate = document.querySelector(".optDate");
-//   const optAlpha = document.querySelector(".optAlpha");
-//   let sortContainer = document.querySelector(".photograph-imgs-container");
+//   const optTitre = document.querySelector(".optTitre");
 
 //   let sortedMedia = [];
 
-//   const sortBydate = () => {
-//     sortContainer.innerHTML = "";
-//     sortedMedia = currentMedias.sort(
-//       (a, b) => new Date(a.date) - new Date(b.date)
-//     );
-//     app.displayMedia(sortedMedia);
-//   };
+//   selectElement.addEventListener("click", () => {
+//     document.querySelector(".fa-chevron-down").classList.toggle("chevron-up");
+//     let ariaExpanded = selectElement.getAttribute("aria-expanded");
+//     ariaExpanded == "true" ? (ariaExpanded = "false") : (ariaExpanded = "true");
+//     selectElement.setAttribute("aria-expanded", ariaExpanded);
+//     options.classList.toggle("hidden");
+//   });
 
-//   const sortByPopularity = () => {
-//     sortContainer.innerHTML = "";
-//     sortedMedia = currentMedias.sort((a, b) => b.likes - a.likes);
-//     app.displayMedia(sortedMedia);
-//     sortedMedia = [];
-//   };
+//   if (optDate) {
+//     optDate.addEventListener("click", () => {
+//       this.mediaContainer.innerHTML = "";
 
-//   const sortByTitle = () => {
-//     sortContainer.innerHTML = "";
-//     sortedMedia = currentMedias.sort((a, b) => (a.title < b.title ? -1 : 1));
-//     app.displayMedia(sortedMedia);
-//     sortedMedia = [];
-//   };
+//       sortedMedia = medias.sort((a, b) => new Date(a.date) - new Date(b.date));
+//     });
+//   }
+//   if (optPop) {
+//     optPop.addEventListener("click", () => {
+//       this.mediaContainer.innerHTML = "";
+//       sortedMedia = medias.sort((a, b) => b.likes - a.likes);
+//     });
+//   }
 
-//   optDate.addEventListener("click", sortBydate);
-//   optPop.addEventListener("click", sortByPopularity);
-//   optAlpha.addEventListener("click", sortByTitle);
+//   if (optTitre) {
+//     optTitre.addEventListener("click", () => {
+//       this.mediaContainer.innerHTML = "";
+//       sortedMedia = medias.sort((a, b) => (a.title < b.title ? -1 : 1));
+//     });
+//   }
+
+//   app.displayMedia(sortedMedia);
+//   app.counterLike(medias);
 // }

@@ -32,11 +32,11 @@ class Lightbox {
    *
    */
 
-  constructor(url, images, medias) {
+  constructor(url, images) {
     this.element = this.builDom(url);
 
     this.images = images;
-    this.medias = medias;
+
     this.loadImage(url);
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.appendChild(this.element);
@@ -179,7 +179,7 @@ class Lightbox {
           <button class="lightbox__next">Suivant</button>
           <button class="lightbox__prev">Précédent</button>
           <div class="lightbox__container"></div>
-
+          
       </div>
       `;
     dom
