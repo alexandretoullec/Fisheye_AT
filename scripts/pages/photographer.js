@@ -35,13 +35,22 @@ class App {
   async displayMedia(medias) {
     //initiate factoty media
 
-    this.factoryMedia = mediaTemplate(medias);
+    // this.factoryMedia = mediaTemplate(medias);
+
+    // constructor pattern
 
     // for each media create card from factory mediaTemplate getMedia
+
     medias.forEach((media) => {
-      const mediasPhotograph = mediaTemplate(media);
-      const userCardDOM = mediasPhotograph.getMedia();
-      this.mediaContainer.appendChild(userCardDOM);
+      if (media.image) {
+        const mediasPhotograph = new DataFactory(media, "photo");
+        const userCardDOM = mediasPhotograph.getMedia();
+        this.mediaContainer.appendChild(userCardDOM);
+      } else if (media.video) {
+        const mediasPhotograph = new DataFactory(media, "video");
+        const userCardDOM = mediasPhotograph.getMedia();
+        this.mediaContainer.appendChild(userCardDOM);
+      }
     });
     app.displayLightbox();
   }

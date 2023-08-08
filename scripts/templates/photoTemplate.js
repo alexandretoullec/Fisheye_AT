@@ -1,12 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-class ImageTemplate {
+class PhotoTemplate {
   constructor(data) {
     this._title = data.title;
     this._likes = data.likes;
     this._image = data.image;
-
     this._picture = `assets/images/${this._image}`;
-    // this._videoLink = `assets/images/${video}`;
   }
 
   getMedia() {
@@ -16,14 +14,14 @@ class ImageTemplate {
 
     const imageArticle = `
       
-        <a href="${this._picture}" class="media-img-card" alt=${this.image} aria-label="${this.image}"
+        <a href="${this._picture}" class="media-img-card" alt=${this._image} aria-label="${this._image}"
         >
-          <img src="${this._picture}" alt=${this.image}>
+          <img src="${this._picture}" alt=${this._image}>
         </a>
         <div class="textContainer">
-          <h3>${this.title}</h3>
+          <h3>${this._title}</h3>
           <div class="likeContainer">
-            <p class="count">${this.likes}</p>
+            <p class="count">${this._likes}</p>
             <label class="heart-checkbox">
               <p class="explain">like counter</p>
               <input type="checkbox"/>
