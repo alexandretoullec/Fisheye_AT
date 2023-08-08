@@ -177,7 +177,7 @@ class App {
       }
     }
 
-    this.modal.logOnSubmit();
+    this.modal.checkForm();
   }
 
   async main() {
