@@ -36,11 +36,15 @@ function contactForm(data) {
     return formContent;
   }
 
+  // check if the entry have at least 2 char for fname and lname and check the validaity of the email adress
+
   function inputCheck(input) {
     // eslint-disable-next-line no-useless-escape
     const standardRegex = new RegExp(/^[\w-\.]{2,}/);
     // eslint-disable-next-line no-useless-escape
     const emailRegex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+
+    // using switch to select according to id the good regex test
 
     switch (input.id) {
       case "prenom":
@@ -54,6 +58,8 @@ function contactForm(data) {
         return false;
     }
   }
+
+  //display an error msg if input don't fulfill conditions
 
   function errorMsg(input) {
     input.closest(".formData").setAttribute("data-error-visible", true);
@@ -77,8 +83,11 @@ function contactForm(data) {
     }
   }
 
+  // look threw input form and if is valid still true console log inputs and close modal
+
   function checkForm(e) {
     e.preventDefault();
+    document.getElementById("prenom").focus();
     const modalCont = document.getElementById("contact_modal");
     const formInputs = document.querySelectorAll(".modalInput");
     const main = document.querySelector("#main");

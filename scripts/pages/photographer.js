@@ -32,6 +32,8 @@ class App {
     Lightbox.init(medias);
   }
 
+  // ********************************** display Media with factory pattern *************
+
   async displayMedia(medias) {
     // constructor pattern
 
@@ -51,7 +53,9 @@ class App {
     app.displayLightbox();
   }
 
-  async sortMedia(medias) {
+  // ********************************** Sort Media *************
+
+  sortMedia(medias) {
     const selectElement = document.querySelector(".selected");
     selectElement.setAttribute("aria-expanded", false);
     const options = document.querySelector(".options");
@@ -63,6 +67,7 @@ class App {
 
     selectElement.addEventListener("click", () => {
       document.querySelector(".fa-chevron-down").classList.toggle("chevron-up");
+      // adding accessibility threw aria label
       let ariaExpanded = selectElement.getAttribute("aria-expanded");
       ariaExpanded == "true"
         ? (ariaExpanded = "false")
@@ -70,6 +75,8 @@ class App {
       selectElement.setAttribute("aria-expanded", ariaExpanded);
       options.classList.toggle("hidden");
     });
+
+    // sorting by date
 
     optDate.addEventListener("click", () => {
       this.mediaContainer.innerHTML = "";
@@ -79,12 +86,16 @@ class App {
       app.counterLike(medias);
     });
 
+    //sorting by number of likes
+
     optPop.addEventListener("click", () => {
       this.mediaContainer.innerHTML = "";
       sortedMedia = medias.sort((a, b) => b.likes - a.likes);
       app.displayMedia(sortedMedia);
       app.counterLike(medias);
     });
+
+    //sorting by name
 
     optTitre.addEventListener("click", () => {
       this.mediaContainer.innerHTML = "";
@@ -94,7 +105,7 @@ class App {
     });
   }
 
-  async counterLike(medias) {
+  counterLike(medias) {
     //dom
     const likesContainer = document.querySelector(".likeprice-container__like");
     const likeBtn = document.querySelectorAll(".fa-heart");
@@ -104,7 +115,6 @@ class App {
     let likeCounter = likes.reduce((a, b) => a + b);
 
     // count likes if checked or -1 if unchecked
-
     likeBtn.forEach((i) =>
       i.addEventListener("click", () => {
         if (i.classList.contains("fa-regular")) {
@@ -137,24 +147,31 @@ class App {
     priceContainer.innerHTML = this.factory.getPrice();
   }
 
+  // *********************************** render form ******************************
+
   async renderForm(photographer) {
     const btnModalOpen = document.querySelector(".contact_button");
     const main = document.querySelector("#main");
-
     this.modal = contactForm(photographer);
 
     const modalCont = document.getElementById("contact_modal");
+    // call getFormContact and render it
     modalCont.innerHTML = this.modal.getFormContact();
+
+    // adding accessibility with aria
     modalCont.setAttribute("aria-hidden", true);
     modalCont.setAttribute("aria-describedby", "modalTitle");
     main.setAttribute("aria-hidden", false);
 
+    // Open modal
     btnModalOpen.addEventListener("click", () => {
       modalCont.ariaHidden = "false";
       main.ariaHidden = "true";
       modalCont.style.display = "block";
       document.getElementById("prenom").focus();
     });
+
+    // close Modal
 
     const btnCloseModal = document.querySelector(".closeModalBtn");
     btnCloseModal.addEventListener("click", closeModal);
@@ -173,9 +190,10 @@ class App {
       }
     }
 
+    // Submit Form
+
     const submitBtn = document.querySelector(".submit-button");
     submitBtn.addEventListener("click", this.modal.checkForm);
-    // this.modal.checkForm();
   }
 
   async main() {
@@ -195,7 +213,8 @@ class App {
     const medias = mediasData.filter(
       (media) => media.photographerId === this.id
     );
-    // sortMedia(medias);
+
+    // init function
     app.displayHeader(photographer);
     app.sortMedia(medias);
     app.displayMedia(medias);
