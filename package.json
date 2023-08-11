@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "jquerry": "^0.0.1-security"
+    "jquerry": "^0.0.1-security",
+    "sass": "^1.65.1"
   },
   "devDependencies": {
     "eslint": "^8.46.0"
