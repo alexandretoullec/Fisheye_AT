@@ -1,4 +1,3 @@
-@import url("photographer.css");
 * {
   margin: 0;
   padding: 0;
@@ -6,14 +5,7 @@
   scroll-behavior: smooth;
 }
 
-img {
-  /* max-height: 120vh; */
-  /* max-width: auto; */
-  max-width: 100%;
-  max-height: 100vh;
-  /* object-fit: cover; */
-}
-
+img,
 video {
   max-width: 100%;
   max-height: 100vh;
@@ -318,7 +310,7 @@ form input {
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.8rem;
-  color: red;
+  color: #901c1c;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
@@ -333,13 +325,13 @@ form input {
 }
 
 .formData[data-error-visible=true] .input {
-  border: 2px solid var(--red);
+  border: 2px solid #901c1c;
 }
 
 input[data-error]::after {
   content: attr(data-error);
   font-size: 2rem;
-  color: red;
+  color: #901c1c;
 }
 
 /* optioins de tri */
@@ -370,9 +362,9 @@ input[data-error]::after {
   border: none;
   font-weight: 700;
   font-size: 16px;
-  color: white;
+  color: #fafafa;
   text-align: left;
-  background-color: var(--main-red);
+  background-color: #901c1c;
   padding-left: 15px;
 }
 
@@ -385,7 +377,7 @@ input[data-error]::after {
 .sort-list button:hover,
 .sort-list button:focus-visible {
   outline: none;
-  background: orange;
+  background: #db8876;
   transition: background ease 0.2s;
 }
 

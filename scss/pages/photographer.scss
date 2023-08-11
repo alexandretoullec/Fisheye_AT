@@ -1,8 +1,10 @@
+@use "../utils/var_and_typo.scss" as var;
+
 .photograph-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fafafa;
+  background-color: var.$light-white;
   height: 300px;
   margin: 0 100px;
   padding: 3rem;
@@ -13,14 +15,14 @@
 }
 
 .photograph-header h1 {
-  color: #d3573c;
+  color: var.$fc-orange;
   font-size: 64px;
   font-weight: 400;
   line-height: 83px;
   margin-bottom: 1rem;
 }
 .photograph-header h2 {
-  color: #901c1c;
+  color: var.$main-red;
   font-size: 35px;
   font-weight: 400;
   line-height: 31px;
@@ -62,19 +64,19 @@
   width: 170px;
   height: 70px;
   border: none;
-  background-color: #901c1c;
+  background-color: var.$main-red;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .contact_button:hover,
 .submit-button:hover {
-  background-color: #d3573c;
+  background-color: var.$fc-orange;
 }
 
 .modal {
   border-radius: 5px;
-  background-color: #db8876;
+  background-color: var.$bg-orange;
   width: 50%;
   max-height: 100%;
   display: flex;
@@ -142,7 +144,7 @@ form input {
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.8rem;
-  color: red;
+  color: var.$main-red;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
@@ -155,12 +157,12 @@ form input {
   opacity: 1;
 }
 .formData[data-error-visible="true"] .input {
-  border: 2px solid var(--red);
+  border: 2px solid var.$main-red;
 }
 input[data-error]::after {
   content: attr(data-error);
   font-size: 2rem;
-  color: red;
+  color: var.$main-red;
 }
 
 /* optioins de tri */
@@ -191,9 +193,9 @@ input[data-error]::after {
   border: none;
   font-weight: 700;
   font-size: 16px;
-  color: white;
+  color: var.$light-white;
   text-align: left;
-  background-color: var(--main-red);
+  background-color: var.$main-red;
   padding-left: 15px;
 }
 
@@ -206,7 +208,7 @@ input[data-error]::after {
 .sort-list button:hover,
 .sort-list button:focus-visible {
   outline: none;
-  background: orange;
+  background: var.$bg-orange;
   transition: background ease 0.2s;
 }
 

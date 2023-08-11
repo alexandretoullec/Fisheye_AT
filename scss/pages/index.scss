@@ -1,5 +1,5 @@
-@import url("photographer.css");
-
+// @import url("photographer.css");
+@use "../utils/var_and_typo.scss";
 * {
   margin: 0;
   padding: 0;
@@ -13,14 +13,7 @@
   $bg-orange: #db8876;
 }
 
-img {
-  /* max-height: 120vh; */
-  /* max-width: auto; */
-  max-width: 100%;
-  max-height: 100vh;
-  /* object-fit: cover; */
-}
-
+img,
 video {
   max-width: 100%;
   max-height: 100vh;
@@ -59,6 +52,8 @@ body {
     transform: rotate(360deg);
   }
 }
+
+// header
 
 header {
   display: flex;
