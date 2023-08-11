@@ -139,6 +139,30 @@ form input {
   padding: 1rem;
 }
 
+.formData[data-error]::after {
+  content: attr(data-error);
+  font-size: 0.8rem;
+  color: red;
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  text-align: right;
+  line-height: 0.3;
+  opacity: 0;
+  transition: 0.3s;
+}
+.formData[data-error-visible="true"]::after {
+  opacity: 1;
+}
+.formData[data-error-visible="true"] .input {
+  border: 2px solid var(--red);
+}
+input[data-error]::after {
+  content: attr(data-error);
+  font-size: 2rem;
+  color: red;
+}
+
 /* optioins de tri */
 
 .photograph-sort {

@@ -11,17 +11,17 @@ function contactForm(data) {
             <img class="closeModalBtn" src="assets/icons/close.svg"  alt="close button"/>
           </header>
           <form name="contactez-moi" method="post" class="contact-form">
-            <div class="contact-form__prenom">
+            <div class="contact-form__prenom formData">
               <label for="prenom">Prénom</label>
-              <input type="text" name="prenom" id="prenom" autofocus/>
+              <input class="modalInput" type="text" name="prenom" id="prenom" autofocus/>
             </div>
-            <div class="contact-form__nom">
+            <div class="contact-form__nom formData">
               <label for="nom">Nom</label>
-              <input type="text" name="nom" id="nom" />
+              <input class="modalInput" type="text" name="nom" id="nom" />
             </div>
-            <div class="contact-form__email">
+            <div class="contact-form__email formData">
               <label for="email">Email</label>
-              <input type="email" name="email" id="email" />
+              <input class="modalInput" type="email" name="email" id="email" />
             </div>
             <div class="contact-form__msg">
               <label for="msg">Votre Message</label>
@@ -54,68 +54,59 @@ function contactForm(data) {
   }
 
   function errorMsg(input) {
-    input
-      .closest(".modalForm__container__form__formData")
-      .setAttribute("data-error-visible", true);
+    input.closest(".formData").setAttribute("data-error-visible", true);
     // using swith for the first five inputs and add a msg error
     switch (input.id) {
-      case "first":
-        input.closest(".modalForm__container__form__formData").dataset.error =
+      case "prenom":
+        input.closest(".formData").dataset.error =
           "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
         break;
-      case "last":
-        input.closest(".modalForm__container__form__formData").dataset.error =
+      case "nom":
+        input.closest(".formData").dataset.error =
           "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
         break;
       case "email":
-        input.closest(".modalForm__container__form__formData").dataset.error =
+        input.closest(".formData").dataset.error =
           "Merci de renseigner une adresse mail conforme";
         break;
-      case "birthdate":
-        input.closest(".modalForm__container__form__formData").dataset.error =
-          "Vous devez entrer votre date de naissance.";
-        break;
-      case "quantity":
-        input.closest(".modalForm__container__form__formData").dataset.error =
-          "Merci de rensigner un nombre de participation";
-        break;
+
       default:
         return "";
     }
   }
 
-  const checkForm = () => {
-    const formInputs = document.querySelectorAll("input");
-
+  function checkForm(e) {
+    e.preventDefault();
+    const modalCont = document.getElementById("contact_modal");
+    const formInputs = document.querySelectorAll(".modalInput");
+    const main = document.querySelector("#main");
+    console.log(formInputs);
     // boolean true by default
     let isValid = true;
 
     // check if input verify the rules using a function and a for each
     formInputs.forEach((formInput) => {
+      formInput
+        .closest(".formData")
+        .setAttribute("data-error-visible", "false");
       if (!inputCheck(formInput)) {
         errorMsg(formInput);
         isValid = false;
       }
     });
     if (isValid) {
-      logOnSubmit();
-    }
-  };
-
-  function logOnSubmit() {
-    const submitBtn = document.querySelector(".submit-button");
-    const form = document.querySelector("form");
-    const inputs = form.querySelectorAll("input,#msg");
-
-    submitBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      inputs.forEach((input) => {
+      formInputs.forEach((input) => {
         console.log(input.value);
+        input.closest(".formData").setAttribute("data-error-visible", "false");
         input.value = "";
       });
-    });
+      console.log(document.querySelector("#msg").value);
+      document.querySelector("#msg").value = "";
+      modalCont.ariaHidden = "true";
+      main.ariaHidden = "false";
+      modalCont.style.display = "none";
+    }
   }
 
-  return { getFormContact, checkForm, logOnSubmit };
+  return { getFormContact, checkForm };
 }
