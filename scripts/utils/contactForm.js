@@ -11,17 +11,17 @@ function contactForm(data) {
             <img class="closeModalBtn" src="assets/icons/close.svg"  alt="close button"/>
           </header>
           <form name="contactez-moi" method="post" class="contact-form">
-            <div class="contact-form__prenom">
+            <div class="contact-form__prenom formData">
               <label for="prenom">Prénom</label>
-              <input type="text" name="prenom" id="prenom" autofocus/>
+              <input class="modalInput" type="text" name="prenom" id="prenom" autofocus/>
             </div>
-            <div class="contact-form__nom">
+            <div class="contact-form__nom formData">
               <label for="nom">Nom</label>
-              <input type="text" name="nom" id="nom" />
+              <input class="modalInput" type="text" name="nom" id="nom" />
             </div>
-            <div class="contact-form__email">
+            <div class="contact-form__email formData">
               <label for="email">Email</label>
-              <input type="email" name="email" id="email" />
+              <input class="modalInput" type="email" name="email" id="email" />
             </div>
             <div class="contact-form__msg">
               <label for="msg">Votre Message</label>
@@ -36,19 +36,88 @@ function contactForm(data) {
     return formContent;
   }
 
-  function logOnSubmit() {
-    const submitBtn = document.querySelector(".submit-button");
-    const form = document.querySelector("form");
-    const inputs = form.querySelectorAll("input,#msg");
+  // check if the entry have at least 2 char for fname and lname and check the validaity of the email adress
 
-    submitBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      inputs.forEach((input) => {
-        console.log(input.value);
-        input.value = "";
-      });
-    });
+  function inputCheck(input) {
+    // eslint-disable-next-line no-useless-escape
+    const standardRegex = new RegExp(/^[\w-\.]{2,}/);
+    // eslint-disable-next-line no-useless-escape
+    const emailRegex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+
+    // using switch to select according to id the good regex test
+
+    switch (input.id) {
+      case "prenom":
+        return standardRegex.test(input.value);
+      case "nom":
+        return standardRegex.test(input.value);
+      case "email":
+        return emailRegex.test(input.value);
+
+      default:
+        return false;
+    }
   }
 
-  return { getFormContact, logOnSubmit };
+  //display an error msg if input don't fulfill conditions
+
+  function errorMsg(input) {
+    input.closest(".formData").setAttribute("data-error-visible", true);
+    // using swith for the first five inputs and add a msg error
+    switch (input.id) {
+      case "prenom":
+        input.closest(".formData").dataset.error =
+          "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
+        break;
+      case "nom":
+        input.closest(".formData").dataset.error =
+          "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+        break;
+      case "email":
+        input.closest(".formData").dataset.error =
+          "Merci de renseigner une adresse mail conforme";
+        break;
+
+      default:
+        return "";
+    }
+  }
+
+  // look threw input form and if is valid still true console log inputs and close modal
+
+  function checkForm(e) {
+    e.preventDefault();
+    document.getElementById("prenom").focus();
+    const modalCont = document.getElementById("contact_modal");
+    const formInputs = document.querySelectorAll(".modalInput");
+    const main = document.querySelector("#main");
+    console.log(formInputs);
+    // boolean true by default
+    let isValid = true;
+
+    // check if input verify the rules using a function and a for each
+    formInputs.forEach((formInput) => {
+      formInput
+        .closest(".formData")
+        .setAttribute("data-error-visible", "false");
+      if (!inputCheck(formInput)) {
+        errorMsg(formInput);
+        isValid = false;
+      }
+    });
+    if (isValid) {
+      formInputs.forEach((input) => {
+        console.log(input.value);
+        input.closest(".formData").setAttribute("data-error-visible", "false");
+        input.value = "";
+      });
+      console.log(document.querySelector("#msg").value);
+      document.querySelector("#msg").value = "";
+      modalCont.ariaHidden = "true";
+      main.ariaHidden = "false";
+      modalCont.style.display = "none";
+    }
+  }
+
+  return { getFormContact, checkForm };
 }

@@ -22,6 +22,8 @@ class Api {
   }
 }
 
+//extended class from Api for photographer data
+
 // eslint-disable-next-line no-unused-vars
 class PhotographerApi extends Api {
   /**
@@ -36,6 +38,8 @@ class PhotographerApi extends Api {
     return await this.getPhotographers();
   }
 }
+
+//extended class from Api for medias data
 
 // eslint-disable-next-line no-unused-vars
 class mediasApi extends Api {

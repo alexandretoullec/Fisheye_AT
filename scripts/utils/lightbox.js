@@ -32,11 +32,11 @@ class Lightbox {
    *
    */
 
-  constructor(url, images, medias) {
+  constructor(url, images) {
     this.element = this.builDom(url);
 
     this.images = images;
-    this.medias = medias;
+
     this.loadImage(url);
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.appendChild(this.element);
@@ -55,24 +55,14 @@ class Lightbox {
 
     const video = document.createElement("video");
 
-    // video.setAttribute("src", url);
-
     const container = this.element.querySelector(".lightbox__container");
     const loader = document.createElement("div");
     loader.classList.add("lightbox__loader");
     container.innerHTML = "";
-    // container.appendChild(loader);
 
     if (url.endsWith(".jpg")) {
-      // container.removeChild(loader);
-
       container.appendChild(image);
       this.url = url;
-
-      // container.removeChild(loader);
-
-      // container.appendChild(image);
-      // this.url = url;
     } else if (url.endsWith(".mp4")) {
       // container.removeChild(loader);
       container.appendChild(video);
@@ -81,21 +71,6 @@ class Lightbox {
       video.autoplay = true;
       this.url = url;
     }
-
-    // image.onload = () => {
-    //   container.removeChild(loader);
-
-    //   container.appendChild(image);
-    //   this.url = url;
-    // };
-
-    // console.log(this.medias);
-
-    // image.onload = () => {
-    //   container.removeChild(loader);
-    //   container.appendChild(image);
-    //   this.url = url;
-    // };
 
     image.src = url;
   }
@@ -137,12 +112,11 @@ class Lightbox {
     e.preventDefault();
 
     let i = this.images.findIndex((image) => image === this.url);
-    console.log(i);
-    // debugger;
+
     if (i === this.images.length - 1) {
       i = -1;
     }
-    // debugger;
+
     this.loadImage(this.images[i + 1]);
   }
 
@@ -155,12 +129,11 @@ class Lightbox {
     e.preventDefault();
 
     let i = this.images.findIndex((image) => image === this.url);
-    console.log(i);
-    // debugger;
+
     if (i === 0) {
       i = this.images.length;
     }
-    // debugger;
+
     this.loadImage(this.images[i - 1]);
   }
 
@@ -179,7 +152,7 @@ class Lightbox {
           <button class="lightbox__next">Suivant</button>
           <button class="lightbox__prev">Précédent</button>
           <div class="lightbox__container"></div>
-
+          
       </div>
       `;
     dom
@@ -194,17 +167,3 @@ class Lightbox {
     return dom;
   }
 }
-
-// Lightbox.init();
-
-/***
-   *
-   <div class="lightbox">
-          <button class="lightbox__close">Fermer</button>
-          <button class="lightbox__next">Suivant</button>
-          <button class="lightbox__prev">Précédent</button>
-          <div class="lightbox__container">
-              <img src="/assets/images/Portrait_Nora.jpg" alt="">
-          </div>
-      </div>
-   *  */
