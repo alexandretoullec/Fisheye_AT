@@ -7,12 +7,12 @@ class App {
     this.mediasApi = new mediasApi("data/photographers.json");
     //show the url of the page
     this.params = new URL(document.location).searchParams;
-    //searcj for id in the url of the page
+    //search for id in the url of the page
     this.id = parseInt(this.params.get("id"));
 
-    //initiate factories
+    //initiate template
     this.factory = null;
-    this.factoryMedia = null;
+
     //DOM media container
     this.mediaContainer = document.querySelector(".photograph-imgs-container");
     this.anchorImgs = this.mediaContainer.querySelectorAll("a");

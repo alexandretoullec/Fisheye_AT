@@ -55,24 +55,14 @@ class Lightbox {
 
     const video = document.createElement("video");
 
-    // video.setAttribute("src", url);
-
     const container = this.element.querySelector(".lightbox__container");
     const loader = document.createElement("div");
     loader.classList.add("lightbox__loader");
     container.innerHTML = "";
-    // container.appendChild(loader);
 
     if (url.endsWith(".jpg")) {
-      // container.removeChild(loader);
-
       container.appendChild(image);
       this.url = url;
-
-      // container.removeChild(loader);
-
-      // container.appendChild(image);
-      // this.url = url;
     } else if (url.endsWith(".mp4")) {
       // container.removeChild(loader);
       container.appendChild(video);
@@ -177,17 +167,3 @@ class Lightbox {
     return dom;
   }
 }
-
-// Lightbox.init();
-
-/***
-   *
-   <div class="lightbox">
-          <button class="lightbox__close">Fermer</button>
-          <button class="lightbox__next">Suivant</button>
-          <button class="lightbox__prev">Précédent</button>
-          <div class="lightbox__container">
-              <img src="/assets/images/Portrait_Nora.jpg" alt="">
-          </div>
-      </div>
-   *  */
