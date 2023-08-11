@@ -37,7 +37,9 @@ function contactForm(data) {
   }
 
   function inputCheck(input) {
+    // eslint-disable-next-line no-useless-escape
     const standardRegex = new RegExp(/^[\w-\.]{2,}/);
+    // eslint-disable-next-line no-useless-escape
     const emailRegex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
 
     switch (input.id) {

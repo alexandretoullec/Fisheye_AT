@@ -33,10 +33,6 @@ class App {
   }
 
   async displayMedia(medias) {
-    //initiate factoty media
-
-    // this.factoryMedia = mediaTemplate(medias);
-
     // constructor pattern
 
     // for each media create card from factory mediaTemplate getMedia
@@ -164,18 +160,9 @@ class App {
     btnCloseModal.addEventListener("click", closeModal);
 
     function closeModal() {
-      const formInputs = document.querySelectorAll(".modalInput");
-      console.log(formInputs);
-
       modalCont.ariaHidden = "true";
       main.ariaHidden = "false";
       modalCont.style.display = "none";
-
-      formInputs.forEach((input) => {
-        console.log(input.value);
-        input.closest(".formData").setAttribute("data-error-visible", "false");
-        input.value = "";
-      });
     }
 
     document.addEventListener("keyup", onKeyUp);

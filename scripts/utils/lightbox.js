@@ -82,21 +82,6 @@ class Lightbox {
       this.url = url;
     }
 
-    // image.onload = () => {
-    //   container.removeChild(loader);
-
-    //   container.appendChild(image);
-    //   this.url = url;
-    // };
-
-    // console.log(this.medias);
-
-    // image.onload = () => {
-    //   container.removeChild(loader);
-    //   container.appendChild(image);
-    //   this.url = url;
-    // };
-
     image.src = url;
   }
 
@@ -137,12 +122,11 @@ class Lightbox {
     e.preventDefault();
 
     let i = this.images.findIndex((image) => image === this.url);
-    console.log(i);
-    // debugger;
+
     if (i === this.images.length - 1) {
       i = -1;
     }
-    // debugger;
+
     this.loadImage(this.images[i + 1]);
   }
 
@@ -155,12 +139,11 @@ class Lightbox {
     e.preventDefault();
 
     let i = this.images.findIndex((image) => image === this.url);
-    console.log(i);
-    // debugger;
+
     if (i === 0) {
       i = this.images.length;
     }
-    // debugger;
+
     this.loadImage(this.images[i - 1]);
   }
 
