@@ -9,7 +9,7 @@ class VideoTemplate {
 
   getMedia() {
     //creation de l'img
-    let articleCont = document.createElement("div");
+    let articleCont = document.createElement("article");
 
     const videoArticle = `
     

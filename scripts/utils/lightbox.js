@@ -52,19 +52,14 @@ class Lightbox {
     this.url = null;
     // const image = new Image();
     const image = document.createElement("img");
-
     const video = document.createElement("video");
-
     const container = this.element.querySelector(".lightbox__container");
-    // const loader = document.createElement("div");
-
     container.innerHTML = "";
 
     if (url.endsWith(".jpg")) {
       container.appendChild(image);
       this.url = url;
     } else if (url.endsWith(".mp4")) {
-      // container.removeChild(loader);
       container.appendChild(video);
       video.setAttribute("src", url);
       video.controls = true;
@@ -110,13 +105,10 @@ class Lightbox {
 
   next(e) {
     e.preventDefault();
-
     let i = this.images.findIndex((image) => image === this.url);
-
     if (i === this.images.length - 1) {
       i = -1;
     }
-
     this.loadImage(this.images[i + 1]);
   }
 
