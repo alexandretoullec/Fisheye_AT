@@ -128,7 +128,7 @@ class App {
 
     const result = `
     <p>
-      ${likeCounter} <span><i class="fa-solid fa-heart"></i></span>
+      ${likeCounter} <span><em class="fa-solid fa-heart"></em></span>
     </p>
     `;
 

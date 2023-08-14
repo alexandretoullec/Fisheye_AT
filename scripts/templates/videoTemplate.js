@@ -25,8 +25,8 @@ class VideoTemplate {
           <label class="heart-checkbox">
             <p class="explain">like counter</p>
             <input type="checkbox"/>
-            <i class="fa-regular fa-heart unchecked"></i>
-            <i class="fa-solid fa-heart checked"></i>
+            <em class="fa-regular fa-heart unchecked"></em>
+            <em class="fa-solid fa-heart checked"></em>
           </label>
         </div>
       </div>
