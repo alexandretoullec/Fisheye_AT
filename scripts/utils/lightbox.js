@@ -56,8 +56,8 @@ class Lightbox {
     const video = document.createElement("video");
 
     const container = this.element.querySelector(".lightbox__container");
-    const loader = document.createElement("div");
-    loader.classList.add("lightbox__loader");
+    // const loader = document.createElement("div");
+
     container.innerHTML = "";
 
     if (url.endsWith(".jpg")) {

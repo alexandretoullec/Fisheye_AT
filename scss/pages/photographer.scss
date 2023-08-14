@@ -165,7 +165,7 @@ input[data-error]::after {
   color: var.$main-red;
 }
 
-/* optioins de tri */
+/******************************************* optioins de tri */
 
 .photograph-sort {
   display: flex;
@@ -291,7 +291,7 @@ input[data-error]::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 3rem;
+  // width: 3rem;
   font-weight: 800;
 }
 
@@ -300,6 +300,7 @@ input[data-error]::after {
   cursor: pointer;
   height: 1.2rem;
   width: auto;
+  margin-left: 0.5rem;
 }
 
 .explain {
@@ -312,7 +313,7 @@ input[data-error]::after {
   display: none;
 }
 
-/* sticky container */
+/************************************ sticky container */
 
 .likeprice-container {
   position: sticky;
@@ -340,8 +341,7 @@ input[data-error]::after {
   cursor: pointer;
 }
 .heart-checkbox i {
-  /* margin: 2rem 0; */
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 .heart-checkbox .checked {
   color: var(--main-red);

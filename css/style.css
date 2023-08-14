@@ -334,7 +334,7 @@ input[data-error]::after {
   color: #901c1c;
 }
 
-/* optioins de tri */
+/******************************************* optioins de tri */
 .photograph-sort {
   display: flex;
   align-items: baseline;
@@ -462,7 +462,6 @@ input[data-error]::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 3rem;
   font-weight: 800;
 }
 
@@ -471,6 +470,7 @@ input[data-error]::after {
   cursor: pointer;
   height: 1.2rem;
   width: auto;
+  margin-left: 0.5rem;
 }
 
 .explain {
@@ -483,7 +483,7 @@ input[data-error]::after {
   display: none;
 }
 
-/* sticky container */
+/************************************ sticky container */
 .likeprice-container {
   position: sticky;
   bottom: 0;
@@ -510,8 +510,7 @@ input[data-error]::after {
 }
 
 .heart-checkbox i {
-  /* margin: 2rem 0; */
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .heart-checkbox .checked {
@@ -687,11 +686,6 @@ input[data-error]::after {
   right: 100px;
   top: 50px;
   z-index: 12;
-  /* width: 40px;
-      height: auto; */
-  /* width: 15px;
-      height: 15px; */
-  /* background: url('data:image/svg+xml;utf8,<svg width="98" height="109" viewBox="0 0 98 109" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49 45.5211L8.6953 0.620251L0.6355 9.59915L40.9402 54.5L0.6355 99.4008L8.6953 108.38L49 63.4789L89.3047 108.38L97.3645 99.4008L57.0598 54.5L97.3645 9.59915L89.3047 0.620251L49 45.5211Z" fill="white"/></svg>); */
 }
 
 .lightbox button {

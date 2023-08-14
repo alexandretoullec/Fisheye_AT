@@ -15,7 +15,6 @@ class App {
 
     //DOM media container
     this.mediaContainer = document.querySelector(".photograph-imgs-container");
-    this.anchorImgs = this.mediaContainer.querySelectorAll("a");
   }
 
   async displayHeader(photographer) {
@@ -28,15 +27,9 @@ class App {
     mainCont.innerHTML = this.factory.getUserHeader();
   }
 
-  async displayLightbox(medias) {
-    Lightbox.init(medias);
-  }
-
   // ********************************** display Media with factory pattern *************
 
   async displayMedia(medias) {
-    // constructor pattern
-
     // for each media create card from factory mediaTemplate getMedia
 
     medias.forEach((media) => {
@@ -50,12 +43,13 @@ class App {
         this.mediaContainer.appendChild(userCardDOM);
       }
     });
-    app.displayLightbox();
+    Lightbox.init();
   }
 
   // ********************************** Sort Media *************
 
   sortMedia(medias) {
+    //DOM
     const selectElement = document.querySelector(".selected");
     selectElement.setAttribute("aria-expanded", false);
     const options = document.querySelector(".options");
@@ -65,10 +59,12 @@ class App {
 
     let sortedMedia = [];
 
+    // adding dynamic behavior and accessibility
     selectElement.addEventListener("click", () => {
       document.querySelector(".fa-chevron-down").classList.toggle("chevron-up");
       // adding accessibility threw aria label
       let ariaExpanded = selectElement.getAttribute("aria-expanded");
+      //using ternary operation
       ariaExpanded == "true"
         ? (ariaExpanded = "false")
         : (ariaExpanded = "true");
@@ -153,14 +149,13 @@ class App {
     const btnModalOpen = document.querySelector(".contact_button");
     const main = document.querySelector("#main");
     this.modal = contactForm(photographer);
-
     const modalCont = document.getElementById("contact_modal");
+
     // call getFormContact and render it
     modalCont.innerHTML = this.modal.getFormContact();
 
     // adding accessibility with aria
     modalCont.setAttribute("aria-hidden", true);
-    modalCont.setAttribute("aria-describedby", "modalTitle");
     main.setAttribute("aria-hidden", false);
 
     // Open modal

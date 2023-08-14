@@ -1,5 +1,3 @@
-//factory function simplified version of classes
-
 // eslint-disable-next-line no-unused-vars
 function photographerTemplate(data) {
   //destructuring objects from data

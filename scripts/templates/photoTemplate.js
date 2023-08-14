@@ -10,7 +10,6 @@ class PhotoTemplate {
   getMedia() {
     //creation de l'img
     let articleCont = document.createElement("div");
-    // let img = "";
 
     const imageArticle = `
       
