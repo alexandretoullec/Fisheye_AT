@@ -91,7 +91,7 @@ function contactForm(data) {
     const modalCont = document.getElementById("contact_modal");
     const formInputs = document.querySelectorAll(".modalInput");
     const main = document.querySelector("#main");
-    console.log(formInputs);
+    // console.log(formInputs);
     // boolean true by default
     let isValid = true;
 

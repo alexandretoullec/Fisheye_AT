@@ -720,13 +720,6 @@ input[data-error]::after {
   min-height: 100vh;
 }
 
-.lightbox__loader {
-  width: 38px;
-  height: 38px;
-  opacity: 0.5;
-  background: url(../assets/loader.svg) center center no-repeat;
-}
-
 @keyframes lightBoxIn {
   from {
     opacity: 0;
