@@ -255,7 +255,7 @@ input[data-error]::after {
   transition: 0.2s linear;
 }
 
-/* img container */
+/********************************** img container ********************************/
 
 .photograph-imgs-container {
   margin-top: 2rem;
@@ -280,10 +280,10 @@ input[data-error]::after {
 }
 
 .textContainer {
-  color: var(--main-red);
+  color: var.$main-red;
   margin-top: 1rem;
   display: flex;
-
+  font-size: 1.2rem;
   justify-content: space-between;
 }
 
@@ -291,12 +291,15 @@ input[data-error]::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 10%;
+  width: 3rem;
+  font-weight: 800;
 }
 
 .likeContainer .fa-solid,
 .fa-regular {
   cursor: pointer;
+  height: 1.2rem;
+  width: auto;
 }
 
 .explain {
@@ -317,7 +320,7 @@ input[data-error]::after {
   /* right: 0; */
   left: 80%;
   width: 25%;
-  background-color: var(--bg-orange);
+  background-color: var.$bg-orange;
   padding: 2rem 4rem;
   display: flex;
   justify-content: space-between;
@@ -368,7 +371,9 @@ input[data-error]::after {
   }
 
   .photograph-imgs-container {
+    margin-top: 4rem;
     grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
   .likeprice-container {
     width: 50%;
